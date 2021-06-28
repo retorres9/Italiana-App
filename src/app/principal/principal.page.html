@@ -1,0 +1,127 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>La Italiana Pizzeria</ion-title>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-icon name="search-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row class="ion-padding">
+            <ion-slides [options]="slideOpts">
+                <ion-slide>
+
+                    <ion-img src="assets/pizza.jpg"></ion-img>
+
+                </ion-slide>
+                <ion-slide>
+
+                    <ion-img src="assets/pizza.jpg"></ion-img>
+
+                </ion-slide>
+            </ion-slides>
+        </ion-row>
+        <ion-row style="padding-left: 10px; padding-right: 10px;">
+            <ion-col size="12">
+                <h1>Categorias</h1>
+            </ion-col>
+            <ion-col size="6">
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <img src="assets/pizza-cat.jpg" />
+                    </ion-thumbnail>
+                    <ion-label>Pizzas</ion-label>
+                </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <img src="assets/1gas.jpg" />
+                    </ion-thumbnail>
+                    <ion-label>Bebidas</ion-label>
+                </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <img src="assets/postre.jpg" />
+                    </ion-thumbnail>
+                    <ion-label>Postres</ion-label>
+                </ion-item>
+            </ion-col>
+            <ion-col size="6">
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <img src="assets/ensalada.jpg" />
+                    </ion-thumbnail>
+                    <ion-label>Ensaladas</ion-label>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <h1>Más vendido</h1>
+            </ion-col>
+            <ion-col size="12">
+                <ion-slides [options]="slideOpts">
+                    <ion-slide>
+                        <ion-card>
+                            <img src="assets/pizza.jpg" alt="">
+                            <ion-card-header>
+                                <ion-card-title>
+                                    Pizza Hawaiana
+                                </ion-card-title>
+                                <ion-card-content>
+                                    <ion-button color="primary">
+                                        <ion-icon slot="start" name="cart-outline"></ion-icon>
+                                        Carrito
+                                    </ion-button>
+                                </ion-card-content>
+
+                            </ion-card-header>
+                        </ion-card>
+                    </ion-slide>
+                    <ion-slide>
+                        <ion-card>
+                            <img src="assets/pizza.jpg" alt="">
+                            <ion-card-header>
+                                <ion-card-title>
+                                    Pizza Hawaiana
+                                </ion-card-title>
+                                <ion-card-content>
+                                    <ion-button color="primary">
+                                        <ion-icon slot="start" name="cart-outline"></ion-icon>
+                                        Carrito
+                                    </ion-button>
+                                </ion-card-content>
+
+                            </ion-card-header>
+                        </ion-card>
+                    </ion-slide>
+                    <ion-slide>
+                        <ion-card>
+                            <img src="assets/pizza.jpg" alt="">
+                            <ion-card-header>
+                                <ion-card-title>
+                                    Pizza Hawaiana
+                                </ion-card-title>
+                                <ion-card-content>
+                                    <ion-button color="primary">
+                                        <ion-icon slot="start" name="cart-outline"></ion-icon>
+                                        Carrito
+                                    </ion-button>
+                                </ion-card-content>
+
+                            </ion-card-header>
+                        </ion-card>
+                    </ion-slide>
+                </ion-slides>
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+</ion-content>
