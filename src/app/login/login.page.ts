@@ -23,4 +23,9 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  loginFace(proveedor:string){
+    this.auth.loginFace(proveedor);
+    this.router.navigate(['/home']);
+  }
+
 }

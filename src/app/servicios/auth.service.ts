@@ -20,6 +20,10 @@ export class AuthService {
     this.AFauth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
   };
 
+  loginFace(proveedor:string){
+    this.AFauth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+  };
+
 //Metodo de salida de sesión
   logout() {
     this.AFauth.signOut();
