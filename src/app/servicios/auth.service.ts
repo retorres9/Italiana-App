@@ -19,7 +19,7 @@ export class AuthService {
   login(proveedor:string){
     this.AFauth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
   };
-
+//Metodo de logeo con Facebook
   loginFace(proveedor:string){
     this.AFauth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
   };
