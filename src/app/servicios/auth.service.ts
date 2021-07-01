@@ -16,12 +16,12 @@ export class AuthService {
   constructor(  public AFauth: AngularFireAuth, private db:AngularFirestore ) { }
 
 //Metodo de logeo con Google
-  login(proveedor:string){
-    this.AFauth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+  login(){
+    return this.AFauth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   };
 //Metodo de logeo con Facebook
   loginFace(proveedor:string){
-    this.AFauth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    return this.AFauth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
   };
 
 //Metodo de salida de sesión
