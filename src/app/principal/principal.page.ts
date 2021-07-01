@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./principal.page.scss'],
 })
 export class PrincipalPage implements OnInit {
-
+  usuario: string;
   slideOpts = {
     slidesPerView: 2,
     speed: 400,
@@ -16,6 +16,8 @@ export class PrincipalPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    const usuarioLocal = JSON.parse(localStorage.getItem('profile'));
+    this.usuario = usuarioLocal.name;
   }
 
 }
