@@ -19,6 +19,8 @@ export class LoginPage implements OnInit {
   login(){
     this.auth.login().then(
       resp => {
+        console.log(resp);
+
         localStorage.setItem('perfil', JSON.stringify(resp.additionalUserInfo.profile));
         localStorage.setItem('credencial', JSON.stringify(resp.credential));
         this.router.navigate(['/principal']);
@@ -28,19 +30,16 @@ export class LoginPage implements OnInit {
     });
   }
 
-  // !! Revisar porqué el método loginFace recive un proveedor y de donde lo obtiene porque en login no se usa el proveedor
-  loginFace(
-
-  ){
-    // this.auth.loginFace(proveedor).then(
-    //   resp => {
-    //     this.router.navigate(['/home']);
-    //   }
-    // ).catch(
-    //   err => {
-    //     console.error(err);
-    //   }
-    // );
+  loginFace(){
+    this.auth.loginFace().then(
+      resp => {
+        this.router.navigate(['/home']);
+      }
+    ).catch(
+      err => {
+        console.error(err);
+      }
+    );
   }
 
 }
