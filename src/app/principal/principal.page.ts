@@ -18,13 +18,6 @@ export class PrincipalPage implements OnInit {
 
   ngOnInit() {
   }
-//metodo direccionamiento pagina Pizza
-  pPizza(){
-    this.router.navigate(['/pizza']);
-  }
-//metodo direccionamiento pagina Bebidas
-  pBebidas(){
-    this.router.navigate(['/bebidas']);
-  }
+
 
 }
