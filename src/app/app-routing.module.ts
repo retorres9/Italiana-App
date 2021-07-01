@@ -19,6 +19,22 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'pizza',
+    loadChildren: () => import('./pizza/pizza.module').then( m => m.PizzaPageModule)
+  },
+  {
+    path: 'bebidas',
+    loadChildren: () => import('./bebidas/bebidas.module').then( m => m.BebidasPageModule)
+  },
+  {
+    path: 'postres',
+    loadChildren: () => import('./postres/postres.module').then( m => m.PostresPageModule)
+  },
+  {
+    path: 'ensaladas',
+    loadChildren: () => import('./ensaladas/ensaladas.module').then( m => m.EnsaladasPageModule)
+  },
 ];
 
 @NgModule({

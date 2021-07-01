@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar color="primary">
+    <ion-toolbar style="--background: #ffca22;">
         <ion-title>La Italiana Pizzeria</ion-title>
         <ion-buttons slot="end">
             <ion-button>
@@ -9,7 +9,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
     <ion-grid>
         <ion-row class="ion-padding">
             <ion-col size="12">
@@ -39,7 +39,7 @@
                     <ion-thumbnail slot="start">
                         <img src="assets/pizza-cat.jpg" />
                     </ion-thumbnail>
-                    <ion-label class="ion-text-center">Pizzas</ion-label>
+                    <ion-label (click)="pPizza()" class="ion-text-center">Pizzas</ion-label>
                 </ion-item>
             </ion-col>
             <ion-col size="6">
@@ -47,7 +47,7 @@
                     <ion-thumbnail slot="start">
                         <img src="assets/1gas.jpg" />
                     </ion-thumbnail>
-                    <ion-label class="ion-text-center">Bebidas</ion-label>
+                    <ion-label (click)="pBebidas()" class="ion-text-center">Bebidas</ion-label>
                 </ion-item>
             </ion-col>
             <ion-col size="6">
@@ -55,7 +55,7 @@
                     <ion-thumbnail slot="start">
                         <img src="assets/postre.jpg" />
                     </ion-thumbnail>
-                    <ion-label class="ion-text-center">Postres</ion-label>
+                    <ion-label (click)="pPostres()" class="ion-text-center">Postres</ion-label>
                 </ion-item>
             </ion-col>
             <ion-col size="6">
@@ -63,7 +63,7 @@
                     <ion-thumbnail slot="start">
                         <img src="assets/ensalada.jpg" />
                     </ion-thumbnail>
-                    <ion-label class="ion-text-center">Ensaladas</ion-label>
+                    <ion-label (click)="pEnsaladas()" class="ion-text-center">Ensaladas</ion-label>
                 </ion-item>
             </ion-col>
         </ion-row>
@@ -79,7 +79,7 @@
                             <ion-card-header>
                                 <ion-card-subtitle class="ion-margin">
                                     Pizza Hawaiana
-                                    <ion-button color="primary">
+                                    <ion-button style="background: #ffca22;">
                                         <ion-icon slot="start" name="cart-outline"></ion-icon>
                                         Carrito
                                     </ion-button>
@@ -94,7 +94,7 @@
                             <ion-card-header>
                                 <ion-card-subtitle class="ion-margin">
                                     Pizza Hawaiana
-                                    <ion-button color="primary">
+                                    <ion-button style="background: #ffca22;">
                                         <ion-icon slot="start" name="cart-outline"></ion-icon>
                                         Carrito
                                     </ion-button>
@@ -110,7 +110,7 @@
                             <ion-card-header>
                                 <ion-card-subtitle class="ion-margin">
                                     Pizza Hawaiana
-                                    <ion-button color="primary">
+                                    <ion-button style="background: #ffca22;">
                                         <ion-icon slot="start" name="cart-outline"></ion-icon>
                                         Carrito
                                     </ion-button>

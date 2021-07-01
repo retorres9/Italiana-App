@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-principal',
@@ -13,11 +14,29 @@ export class PrincipalPage implements OnInit {
     autoWidth: true
   };
 
-  constructor() { }
+  constructor(public router:Router) { }
 
   ngOnInit() {
     const usuarioLocal = JSON.parse(localStorage.getItem('profile'));
     this.usuario = usuarioLocal.name;
   }
+
+  //metodo direccionamiento pagina Pizza
+  pPizza(){
+    this.router.navigate(['/pizza']);
+  }
+//metodo direccionamiento pagina Bebidas
+  pBebidas(){
+    this.router.navigate(['/bebidas']);
+  }
+  //metodo direccionamiento pagina Postres
+  pPostres(){
+    this.router.navigate(['/postres']);
+  }
+  //metodo direccionamiento pagina ensaladas
+  pEnsaladas(){
+    this.router.navigate(['/ensaladas']);
+  }
+
 
 }
