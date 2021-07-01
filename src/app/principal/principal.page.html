@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar color="primary">
+    <ion-toolbar style="--background: #ffca22;">
         <ion-title>La Italiana Pizzeria</ion-title>
         <ion-buttons slot="end">
             <ion-button>
@@ -9,7 +9,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="fondo">
     <ion-grid>
         <ion-row class="ion-padding">
             <ion-slides [options]="slideOpts">
@@ -34,7 +34,7 @@
                     <ion-thumbnail slot="start">
                         <img src="assets/pizza-cat.jpg" />
                     </ion-thumbnail>
-                    <ion-label>Pizzas</ion-label>
+                    <ion-label (click)="pPizza()">Pizzas</ion-label>
                 </ion-item>
             </ion-col>
             <ion-col size="6">
@@ -76,7 +76,7 @@
                                     Pizza Hawaiana
                                 </ion-card-title>
                                 <ion-card-content>
-                                    <ion-button color="primary">
+                                    <ion-button style="--background: #ffca22;">
                                         <ion-icon slot="start" name="cart-outline"></ion-icon>
                                         Carrito
                                     </ion-button>
@@ -93,7 +93,7 @@
                                     Pizza Hawaiana
                                 </ion-card-title>
                                 <ion-card-content>
-                                    <ion-button color="primary">
+                                    <ion-button style="--background: #ffca22;">
                                         <ion-icon slot="start" name="cart-outline"></ion-icon>
                                         Carrito
                                     </ion-button>
@@ -110,7 +110,7 @@
                                     Pizza Hawaiana
                                 </ion-card-title>
                                 <ion-card-content>
-                                    <ion-button color="primary">
+                                    <ion-button style="--background: #ffca22;">
                                         <ion-icon slot="start" name="cart-outline"></ion-icon>
                                         Carrito
                                     </ion-button>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-principal',
@@ -13,9 +14,17 @@ export class PrincipalPage implements OnInit {
     autoWidth: true
   };
 
-  constructor() { }
+  constructor( public router:Router) { }
 
   ngOnInit() {
+  }
+//metodo direccionamiento pagina Pizza
+  pPizza(){
+    this.router.navigate(['/pizza']);
+  }
+//metodo direccionamiento pagina Bebidas
+  pBebidas(){
+    this.router.navigate(['/bebidas']);
   }
 
 }
