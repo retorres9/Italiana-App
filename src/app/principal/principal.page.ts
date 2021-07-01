@@ -16,7 +16,7 @@ export class PrincipalPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const usuarioLocal = JSON.parse(localStorage.getItem('profile'));
+    const usuarioLocal = JSON.parse(localStorage.getItem('perfil'));
     this.usuario = usuarioLocal.name;
   }
 
