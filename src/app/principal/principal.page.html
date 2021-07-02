@@ -1,21 +1,16 @@
 <ion-header>
     <ion-toolbar style="--background: #ffca22;">
-        <ion-title>La Italiana Pizzeria</ion-title>
-        <ion-buttons slot="end">
-            <ion-button>
-                <ion-icon name="search-outline"></ion-icon>
-            </ion-button>
-        </ion-buttons>
+        <ion-title style="text-align: center; color:white;"> <b> Bienvenido {{usuario}} </b> </ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content class="fondo">
     <ion-grid>
         <ion-row class="ion-padding">
             <ion-col size="12">
-                <ion-slides [options]="slideOpts">
+                <ion-slides [options]="slideOpts" class="ion-matgin-top">
                     <ion-slide>
-                        <ion-card>
+                        <ion-card class="card">
                             <ion-img src="assets/pizza.jpg"></ion-img>
                         </ion-card>
                     </ion-slide>
@@ -28,14 +23,14 @@
             </ion-col>
         </ion-row>
         <ion-row>
-            <h1>Hola {{usuario}}</h1>
+
         </ion-row>
         <ion-row>
             <ion-col size="12">
-                <h2>Categorias</h2>
+                <h2>Categorias</h2> <br>
             </ion-col>
             <ion-col size="6">
-                <ion-item class="ion-margin-bottom">
+                <ion-item class="ion-margin-bottom" >
                     <ion-thumbnail slot="start">
                         <img src="assets/pizza-cat.jpg" />
                     </ion-thumbnail>
@@ -79,9 +74,9 @@
                             <ion-card-header>
                                 <ion-card-subtitle class="ion-margin">
                                     Pizza Hawaiana
-                                    <ion-button style="background: #ffca22;">
+                                    <ion-button style="--background: #ffca22;">
                                         <ion-icon slot="start" name="cart-outline"></ion-icon>
-                                        Carrito
+                                        <b>Carrito</b>
                                     </ion-button>
                                 </ion-card-subtitle>
 
@@ -94,9 +89,9 @@
                             <ion-card-header>
                                 <ion-card-subtitle class="ion-margin">
                                     Pizza Hawaiana
-                                    <ion-button style="background: #ffca22;">
+                                    <ion-button style="--background: #ffca22;">
                                         <ion-icon slot="start" name="cart-outline"></ion-icon>
-                                        Carrito
+                                        <b>Carrito</b>
                                     </ion-button>
                                 </ion-card-subtitle>
 
@@ -110,9 +105,9 @@
                             <ion-card-header>
                                 <ion-card-subtitle class="ion-margin">
                                     Pizza Hawaiana
-                                    <ion-button style="background: #ffca22;">
+                                    <ion-button style="--background: #ffca22;">
                                         <ion-icon slot="start" name="cart-outline"></ion-icon>
-                                        Carrito
+                                         <b>Carrito</b>
                                     </ion-button>
                                 </ion-card-subtitle>
 
@@ -125,4 +120,14 @@
 
         </ion-row>
     </ion-grid>
+    <br>
+    <p style="text-align: center;">
+      <ion-button color="warning">
+        <ion-icon name="pizza-outline"></ion-icon> <b> Crea tu pizza aquí</b>
+      </ion-button>
+    </p>
+
+
+     <br>
+
 </ion-content>

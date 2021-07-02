@@ -9,15 +9,18 @@ import { Router } from "@angular/router";
 export class PrincipalPage implements OnInit {
   usuario: string;
   slideOpts = {
-    slidesPerView: 2,
-    speed: 400,
-    autoWidth: true
+    slidesPerView: 1.5,
+    centeredSlides:true,
+    loop:true,
+    spaceBetween:10,
+   // speed: 400,
+    //autoWidth: true
   };
 
   constructor(public router:Router) { }
 
   ngOnInit() {
-    const usuarioLocal = JSON.parse(localStorage.getItem('profile'));
+    const usuarioLocal = JSON.parse(localStorage.getItem('perfil'));
     this.usuario = usuarioLocal.name;
   }
 
