@@ -1,16 +1,15 @@
-.face{
-  background: white;
+.face {
+    background: white;
 }
 
 .bg-image {
-  --background:url(../../assets/logo2.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-
-
+    --background: url(../../assets/logo2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
-.col{
-  border-top: 1px solid black;
-  border: center;
+
+.col {
+    border-top: 1px solid black;
+    border: center;
 }
