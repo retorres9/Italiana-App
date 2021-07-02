@@ -1,11 +1,6 @@
 <ion-header>
-    <ion-toolbar color="primary">
-        <ion-title>La Italiana Pizzeria</ion-title>
-        <ion-buttons slot="end">
-            <ion-button>
-                <ion-icon name="search-outline"></ion-icon>
-            </ion-button>
-        </ion-buttons>
+    <ion-toolbar style="--background: #ffca22;">
+        <ion-title style="text-align: center; color:white;"> <b> Bienvenido {{usuario}} </b> </ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -13,9 +8,9 @@
     <ion-grid>
         <ion-row class="ion-padding">
             <ion-col size="12">
-                <ion-slides [options]="slideOpts">
+                <ion-slides [options]="slideOpts" class="ion-matgin-top">
                     <ion-slide>
-                        <ion-card>
+                        <ion-card class="card">
                             <ion-img src="assets/pizza.jpg"></ion-img>
                         </ion-card>
                     </ion-slide>
@@ -28,18 +23,18 @@
             </ion-col>
         </ion-row>
         <ion-row>
-            <h1>Hola {{usuario}}</h1>
+
         </ion-row>
         <ion-row>
             <ion-col size="12">
-                <h2>Categorias</h2>
+                <h2>Categorias</h2> <br>
             </ion-col>
             <ion-col size="6">
-                <ion-item class="ion-margin-bottom">
+                <ion-item class="ion-margin-bottom" >
                     <ion-thumbnail slot="start">
                         <img src="assets/pizza-cat.jpg" />
                     </ion-thumbnail>
-                    <ion-label class="ion-text-center">Pizzas</ion-label>
+                    <ion-label (click)="pPizza()" class="ion-text-center">Pizzas</ion-label>
                 </ion-item>
             </ion-col>
             <ion-col size="6">
@@ -47,7 +42,7 @@
                     <ion-thumbnail slot="start">
                         <img src="assets/1gas.jpg" />
                     </ion-thumbnail>
-                    <ion-label class="ion-text-center">Bebidas</ion-label>
+                    <ion-label (click)="pBebidas()" class="ion-text-center">Bebidas</ion-label>
                 </ion-item>
             </ion-col>
             <ion-col size="6">
@@ -55,7 +50,7 @@
                     <ion-thumbnail slot="start">
                         <img src="assets/postre.jpg" />
                     </ion-thumbnail>
-                    <ion-label class="ion-text-center">Postres</ion-label>
+                    <ion-label (click)="pPostres()" class="ion-text-center">Postres</ion-label>
                 </ion-item>
             </ion-col>
             <ion-col size="6">
@@ -63,7 +58,7 @@
                     <ion-thumbnail slot="start">
                         <img src="assets/ensalada.jpg" />
                     </ion-thumbnail>
-                    <ion-label class="ion-text-center">Ensaladas</ion-label>
+                    <ion-label (click)="pEnsaladas()" class="ion-text-center">Ensaladas</ion-label>
                 </ion-item>
             </ion-col>
         </ion-row>
@@ -79,9 +74,9 @@
                             <ion-card-header>
                                 <ion-card-subtitle class="ion-margin">
                                     Pizza Hawaiana
-                                    <ion-button color="primary">
+                                    <ion-button style="--background: #ffca22;">
                                         <ion-icon slot="start" name="cart-outline"></ion-icon>
-                                        Carrito
+                                        <b>Carrito</b>
                                     </ion-button>
                                 </ion-card-subtitle>
 
@@ -94,9 +89,9 @@
                             <ion-card-header>
                                 <ion-card-subtitle class="ion-margin">
                                     Pizza Hawaiana
-                                    <ion-button color="primary">
+                                    <ion-button style="--background: #ffca22;">
                                         <ion-icon slot="start" name="cart-outline"></ion-icon>
-                                        Carrito
+                                        <b>Carrito</b>
                                     </ion-button>
                                 </ion-card-subtitle>
 
@@ -110,9 +105,9 @@
                             <ion-card-header>
                                 <ion-card-subtitle class="ion-margin">
                                     Pizza Hawaiana
-                                    <ion-button color="primary">
+                                    <ion-button style="--background: #ffca22;">
                                         <ion-icon slot="start" name="cart-outline"></ion-icon>
-                                        Carrito
+                                         <b>Carrito</b>
                                     </ion-button>
                                 </ion-card-subtitle>
 
@@ -125,4 +120,16 @@
 
         </ion-row>
     </ion-grid>
-</ion-content>
+    <br>
+    <p style="text-align: center;">
+      <ion-button color="warning">
+        <ion-icon name="pizza-outline"></ion-icon> <b> Crea tu pizza aquí</b>
+      </ion-button>
+    </p>
+
+
+     <br>
+
+
+
+
