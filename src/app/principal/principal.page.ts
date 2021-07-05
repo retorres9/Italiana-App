@@ -25,8 +25,8 @@ export class PrincipalPage implements OnInit {
   }
 
   //metodo direccionamiento pagina Pizza
-  pPizza(){
-    this.router.navigate(['/pizza']);
+  pPizza(tipo: string){
+    this.router.navigate([`/pizza/${tipo}`]);
   }
 //metodo direccionamiento pagina Bebidas
   pBebidas(){
