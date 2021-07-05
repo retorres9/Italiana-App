@@ -5,7 +5,7 @@ import { PizzaPage } from './pizza.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':tipo',
     component: PizzaPage
   }
 ];
