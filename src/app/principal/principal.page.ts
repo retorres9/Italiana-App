@@ -19,6 +19,7 @@ export class PrincipalPage implements OnInit {
 
   constructor(public router:Router) { }
 
+
   ngOnInit() {
     const usuarioLocal = JSON.parse(localStorage.getItem('perfil'));
     this.usuario = usuarioLocal.name;
@@ -43,6 +44,7 @@ export class PrincipalPage implements OnInit {
   bPizza(){
     this.router.navigate(['/combinacion']);
   }
+
 
 
 }

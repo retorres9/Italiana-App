@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ObtproductosService } from '../servicios/obtproductos.service';
 import { Producto } from './pizza.model';
 
 
 import { ActivatedRoute } from '@angular/router';
-
 
 @Component({
   selector: 'app-pizza',
@@ -13,11 +11,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./pizza.page.scss'],
 })
 export class PizzaPage implements OnInit {
-
-
-products: Producto[]= [];
-
+  products: Producto[]= [];
+  titulo: string;
   constructor( private obtproductos: ObtproductosService,private activatedRoute: ActivatedRoute) { }
+
+  
+  
 
   ngOnInit() {
     this.obtproductos.productopizza.subscribe(
