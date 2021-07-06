@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ObtproductosService } from '../servicios/obtproductos.service';
+import { Producto } from './pizza.model';
+
+
+
 
 @Component({
   selector: 'app-pizza',
@@ -7,9 +12,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PizzaPage implements OnInit {
 
-  constructor() { }
+products: Producto[]= [];
+
+  constructor( private obtproductos: ObtproductosService) { }
 
   ngOnInit() {
+    this.obtproductos.productopizza.subscribe(
+      resp=>{
+        this.products = resp;
+      }
+    )
   }
+
+  ionViewWillEnter(){
+   this.obtproductos.getProducts().subscribe();
+  }
+
 
 }

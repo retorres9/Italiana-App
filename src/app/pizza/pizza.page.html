@@ -1,9 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>pizza</ion-title>
+    <ion-title> pizza</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <h1>hola</h1>
+
+  <ion-item *ngFor = "let datos of products">
+    <ion-label>
+      {{datos.name}}
+      <p> {{datos.description}}</p>
+      <p *ngFor= "let price of datos.prices">{{price.type}} {{price.price}}</p>
+
+    </ion-label>
+
+
+  </ion-item>
 
 </ion-content>
