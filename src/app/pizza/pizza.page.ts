@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-pizza',
   templateUrl: './pizza.page.html',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PizzaPage implements OnInit {
 
-  constructor() { }
+
+  titulo: string;
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(resp => {
+      console.log(resp);
+      this.titulo = resp.tipo;
+
+    })
   }
 
 }

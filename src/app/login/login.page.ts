@@ -16,16 +16,30 @@ export class LoginPage implements OnInit {
   }
 
 //Metodo que se ejecuta al dar click en boton google
-  login(proveedor: string){
-    console.log(proveedor);
+  login(){
+    this.auth.login().then(
+      resp => {
+        console.log(resp);
 
-    this.auth.login(proveedor);
-    this.router.navigate(['/home']);
+        localStorage.setItem('perfil', JSON.stringify(resp.additionalUserInfo.profile));
+        localStorage.setItem('credencial', JSON.stringify(resp.credential));
+        this.router.navigate(['/principal']);
+      }
+    ).catch(err => {
+      console.log(err);
+    });
   }
 
-  loginFace(proveedor:string){
-    this.auth.loginFace(proveedor);
-    this.router.navigate(['/home']);
+  loginFace(){
+    this.auth.loginFace().then(
+      resp => {
+        this.router.navigate(['/home']);
+      }
+    ).catch(
+      err => {
+        console.error(err);
+      }
+    );
   }
 
 }

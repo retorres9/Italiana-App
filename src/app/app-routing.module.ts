@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'principal',
     pathMatch: 'full'
   },
   {
@@ -26,6 +26,18 @@ const routes: Routes = [
   {
     path: 'bebidas',
     loadChildren: () => import('./bebidas/bebidas.module').then( m => m.BebidasPageModule)
+  },
+  {
+    path: 'postres',
+    loadChildren: () => import('./postres/postres.module').then( m => m.PostresPageModule)
+  },
+  {
+    path: 'ensaladas',
+    loadChildren: () => import('./ensaladas/ensaladas.module').then( m => m.EnsaladasPageModule)
+  },
+  {
+    path: 'combinacion',
+    loadChildren: () => import('./combinacion/combinacion.module').then( m => m.CombinacionPageModule)
   },
 ];
 
