@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { firebaseConfig } from "../environments/environment";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule, } from "@angular/fire/firestore";
+import { HttpClientModule } from "@angular/common/http";
 
 
 
@@ -19,8 +21,9 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,AngularFireModule.initializeApp(firebaseConfig),
-            AngularFireAuthModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy,}],
+            AngularFireAuthModule,AngularFirestoreModule,HttpClientModule],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy,}
+             ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
