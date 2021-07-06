@@ -40,6 +40,9 @@ export class PrincipalPage implements OnInit {
   pEnsaladas(){
     this.router.navigate(['/ensaladas']);
   }
+  bPizza(){
+    this.router.navigate(['/combinacion']);
+  }
 
 
 }
