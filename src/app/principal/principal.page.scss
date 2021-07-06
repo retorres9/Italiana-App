@@ -14,6 +14,7 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
 * {
     padding: 0;
     margin: 0;
@@ -53,5 +54,6 @@ border-radius: 12px;
 .swiper-slide{
   transition: 400ms all ease-in-out;
 }
+
 
 
