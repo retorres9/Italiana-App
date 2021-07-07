@@ -39,6 +39,14 @@ const routes: Routes = [
     path: 'combinacion',
     loadChildren: () => import('./combinacion/combinacion.module').then( m => m.CombinacionPageModule)
   },
+  {
+    path: 'detail',
+    loadChildren: () => import('./screen/detail/detail.module').then( m => m.DetailPageModule)
+  },
+  {
+    path: 'card',
+    loadChildren: () => import('./screen/card/card.module').then( m => m.CardPageModule)
+  },
 ];
 
 @NgModule({

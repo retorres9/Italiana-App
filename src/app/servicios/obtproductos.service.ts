@@ -32,7 +32,7 @@ export class ObtproductosService {
             product.name = pizza[key].name;
             product.description = pizza[key].description;
             product.prices = pizza[key].prices;
-
+            product.image = pizza[key].image;
           }
           products.push({...product});
         }
