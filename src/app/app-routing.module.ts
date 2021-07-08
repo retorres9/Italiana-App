@@ -8,21 +8,21 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'principal',
+    redirectTo: 'tabs/principal',
     pathMatch: 'full'
   },
-  {
-    path: 'principal',
-    loadChildren: () => import('./principal/principal.module').then( m => m.PrincipalPageModule)
-  },
+  // {
+  //   path: 'principal',
+  //   loadChildren: () => import('./principal/principal.module').then( m => m.PrincipalPageModule)
+  // },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
-  {
-    path: 'pizza',
-    loadChildren: () => import('./pizza/pizza.module').then( m => m.PizzaPageModule)
-  },
+  // {
+  //   path: 'tabs/pizza',
+  //   loadChildren: () => import('./pizza/pizza.module').then( m => m.PizzaPageModule)
+  // },
   {
     path: 'bebidas',
     loadChildren: () => import('./bebidas/bebidas.module').then( m => m.BebidasPageModule)
@@ -47,6 +47,11 @@ const routes: Routes = [
     path: 'card',
     loadChildren: () => import('./screen/card/card.module').then( m => m.CardPageModule)
   },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+
 ];
 
 @NgModule({
