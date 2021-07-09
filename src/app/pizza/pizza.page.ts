@@ -14,11 +14,11 @@ products: Producto[]= [];
   constructor( private obtproductos: ObtproductosService) { }
 
   ngOnInit() {
-    this.obtproductos.productopizza.subscribe(
-      resp=>{
-        this.products = resp;
-      }
-    )
+    // this.obtproductos.productopizza.subscribe(
+    //   resp=>{
+    //     this.products = resp;
+    //   }
+    // )
   }
 
   ionViewWillEnter(){

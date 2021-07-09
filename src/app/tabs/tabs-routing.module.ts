@@ -5,7 +5,7 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'tabs',
     component: TabsPage,
     children: [
       {
@@ -17,7 +17,13 @@ const routes: Routes = [
       },
       {
         path: 'pizza',
-        loadChildren: () => import('../pizza/pizza.module').then( m => m.PizzaPageModule)
+        loadChildren: () =>
+          import('../pizza/pizza.module').then((m) => m.PizzaPageModule),
+      },
+      {
+        path: '',
+        redirectTo: 'tabs/principal',
+        pathMatch: 'full'
       },
     ],
   },

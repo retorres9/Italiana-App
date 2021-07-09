@@ -2,27 +2,15 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
+
   {
     path: '',
-    redirectTo: 'tabs/principal',
-    pathMatch: 'full'
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
   },
-  // {
-  //   path: 'principal',
-  //   loadChildren: () => import('./principal/principal.module').then( m => m.PrincipalPageModule)
-  // },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
-  // {
-  //   path: 'tabs/pizza',
-  //   loadChildren: () => import('./pizza/pizza.module').then( m => m.PizzaPageModule)
-  // },
   {
     path: 'bebidas',
     loadChildren: () => import('./bebidas/bebidas.module').then( m => m.BebidasPageModule)
@@ -46,10 +34,6 @@ const routes: Routes = [
   {
     path: 'card',
     loadChildren: () => import('./screen/card/card.module').then( m => m.CardPageModule)
-  },
-  {
-    path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
   },
 
 ];

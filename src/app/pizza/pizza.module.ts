@@ -9,11 +9,6 @@ import { Component } from '@angular/core';
 
 import { PizzaPage } from './pizza.page';
 
-@Component({
-  selector: 'pizza-module',
-  templateUrl: 'pizza.page.html',
-  styleUrls: ['pizza.page.scss'],
-})
 
 @NgModule({
   imports: [
