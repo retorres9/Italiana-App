@@ -11,8 +11,11 @@ import { tap,map } from "rxjs/operators";
   providedIn: 'root'
 })
 export class ObtproductosService {
-
   private _product = new BehaviorSubject<Producto[]>([]);
+  private _segment: string = 'pizza';
+  public get segment(): string {
+    return this._segment;
+  }
 
   public get productopizza (){
     return this._product.asObservable();
@@ -21,6 +24,9 @@ export class ObtproductosService {
 
   constructor( private http: HttpClient ) { }
 
+  setSegment(tipo: string) {
+    this._segment = tipo;
+  }
 
   getProducts(){
     const product = new Producto();
