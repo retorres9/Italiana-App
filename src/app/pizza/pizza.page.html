@@ -1,29 +1,25 @@
 <ion-header>
     <ion-toolbar color="primary">
-        <ion-title style="text-align: center;"> Pizzas</ion-title>
+        <ion-title style="text-align: center;"> {{segment | titlecase}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content class="fondo">
+    <ion-segment scrollable [value]="segment" (ionChange)="segmentChanged($event)">
 
-
-
-    <!-- Scrollable Segment -->
-    <ion-segment scrollable value="heart">
-
-        <ion-segment-button value="heart">
+        <ion-segment-button value="pizza">
             <ion-icon name="pizza-outline"></ion-icon>
 
         </ion-segment-button>
-        <ion-segment-button value="pin">
+        <ion-segment-button value="bebidas">
             <ion-icon name="beer"></ion-icon>
         </ion-segment-button>
 
-        <ion-segment-button value="sunny">
+        <ion-segment-button value="postres">
             <ion-icon name="ice-cream-outline"></ion-icon>
         </ion-segment-button>
 
-        <ion-segment-button value="apple">
+        <ion-segment-button value="ensaladas">
             <ion-icon name="nutrition-outline"></ion-icon>
         </ion-segment-button>
     </ion-segment>

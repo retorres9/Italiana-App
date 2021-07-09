@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { ObtproductosService } from '../servicios/obtproductos.service';
 
 @Component({
   selector: 'app-principal',
@@ -17,7 +18,7 @@ export class PrincipalPage implements OnInit {
     //autoWidth: true
   };
 
-  constructor(public router:Router) { }
+  constructor(public router: Router, private productService: ObtproductosService) { }
 
 
   ngOnInit() {
@@ -27,10 +28,12 @@ export class PrincipalPage implements OnInit {
 
   //metodo direccionamiento pagina Pizza
   pPizza(tipo: string){
+    this.productService.setSegment(tipo);
     this.router.navigate([`tabs/pizza`]);
   }
 //metodo direccionamiento pagina Bebidas
   pBebidas(){
+    // this.productService.setSegment = 'pebidas';
     this.router.navigate(['/bebidas']);
   }
   //metodo direccionamiento pagina Postres
