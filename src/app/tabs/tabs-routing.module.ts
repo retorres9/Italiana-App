@@ -21,6 +21,10 @@ const routes: Routes = [
           import('../pizza/pizza.module').then((m) => m.PizzaPageModule),
       },
       {
+        path: 'card',
+        loadChildren: () => import('../screen/card/card.module').then( m => m.CardPageModule)
+      },
+      {
         path: '',
         redirectTo: 'tabs/principal',
         pathMatch: 'full'

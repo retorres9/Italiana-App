@@ -33,7 +33,7 @@
                         <h3 class="title"> {{datos.name}}</h3>
                         <p class="desc">{{datos.description}}</p>
                         <ion-buttons>
-                            <ion-button>
+                            <ion-button (click)="addCarritoData(datos)">
                                 <ion-icon slot="icon-only" name="add"> </ion-icon>
                             </ion-button>
                         </ion-buttons>

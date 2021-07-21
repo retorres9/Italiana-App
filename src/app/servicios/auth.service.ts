@@ -21,7 +21,7 @@ export class AuthService {
   };
 //Metodo de logeo con Facebook
   loginFace(){
-    return this.AFauth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    return this.AFauth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
   };
 
 //Metodo de salida de sesión
