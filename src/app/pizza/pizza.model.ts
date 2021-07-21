@@ -6,3 +6,4 @@ export class Producto{
   prices: Price [];
   image: string
 }
+

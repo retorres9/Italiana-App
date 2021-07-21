@@ -31,10 +31,7 @@ const routes: Routes = [
     path: 'detail',
     loadChildren: () => import('./screen/detail/detail.module').then( m => m.DetailPageModule)
   },
-  {
-    path: 'card',
-    loadChildren: () => import('./screen/card/card.module').then( m => m.CardPageModule)
-  },
+
 
 ];
 

@@ -3,6 +3,7 @@ import { AuthService } from "../../app/servicios/auth.service";
 
 import { Router } from "@angular/router";
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -30,16 +31,20 @@ export class LoginPage implements OnInit {
     });
   }
 
+
   loginFace(){
     this.auth.loginFace().then(
       resp => {
-        this.router.navigate(['/home']);
+        console.log(resp);
+
+        localStorage.setItem('perfil', JSON.stringify(resp.additionalUserInfo.profile));
+        localStorage.setItem('credencial', JSON.stringify(resp.credential));
+        this.router.navigate(['/principal']);
       }
-    ).catch(
-      err => {
-        console.error(err);
-      }
-    );
+    ).catch(err => {
+      console.log(err);
+    });
   }
+
 
 }
