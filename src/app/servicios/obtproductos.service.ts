@@ -35,6 +35,7 @@ export class ObtproductosService {
         const products = [];
         for(const key in pizza){
           if(pizza.hasOwnProperty(key)){
+            product.id = key;
             product.name = pizza[key].name;
             product.description = pizza[key].description;
             product.prices = pizza[key].prices;

@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="cart"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Generar Orden</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item-divider>
+        <ion-label>Detalle del pedido</ion-label>
+    </ion-item-divider>
+    <ion-item>
+        <ion-icon slot="start" name="cash-outline"></ion-icon>
+        <ion-label>
+            Total a pagar: $10.00
+        </ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-icon slot="start" name="navigate-outline"></ion-icon>
+        <ion-label>{{address}}</ion-label>
+    </ion-item>
+</ion-content>

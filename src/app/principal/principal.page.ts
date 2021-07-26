@@ -23,7 +23,7 @@ export class PrincipalPage implements OnInit {
 
   ngOnInit() {
     const usuarioLocal = JSON.parse(localStorage.getItem('perfil'));
-    this.usuario = usuarioLocal.name;
+    this.usuario = usuarioLocal.displayName;
   }
 
   //metodo direccionamiento pagina Pizza
@@ -31,23 +31,4 @@ export class PrincipalPage implements OnInit {
     this.productService.setSegment(tipo);
     this.router.navigate([`tabs/pizza`]);
   }
-//metodo direccionamiento pagina Bebidas
-  pBebidas(){
-    // this.productService.setSegment = 'pebidas';
-    this.router.navigate(['/bebidas']);
-  }
-  //metodo direccionamiento pagina Postres
-  pPostres(){
-    this.router.navigate(['/postres']);
-  }
-  //metodo direccionamiento pagina ensaladas
-  pEnsaladas(){
-    this.router.navigate(['/ensaladas']);
-  }
-  bPizza(){
-    this.router.navigate(['/combinacion']);
-  }
-
-
-
 }

@@ -9,10 +9,13 @@ import { Router } from "@angular/router";
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
+  errorLogin: any;
   constructor( public auth: AuthService, public router:Router) { }
 
   ngOnInit() {
+    if (localStorage.getItem('perfil')) {
+      this.router.navigate(['tabs', 'principal'])
+    }
   }
 
 //Metodo que se ejecuta al dar click en boton google
@@ -20,10 +23,10 @@ export class LoginPage implements OnInit {
     this.auth.login().then(
       resp => {
         console.log(resp);
+        let obj = resp;
 
-        localStorage.setItem('perfil', JSON.stringify(resp.additionalUserInfo.profile));
-        localStorage.setItem('credencial', JSON.stringify(resp.credential));
-        this.router.navigate(['/principal']);
+        localStorage.setItem('perfil', JSON.stringify(obj));
+        this.router.navigate(['tabs/principal']);
       }
     ).catch(err => {
       console.log(err);
@@ -38,6 +41,7 @@ export class LoginPage implements OnInit {
     ).catch(
       err => {
         console.error(err);
+        this.errorLogin = err;
       }
     );
   }
