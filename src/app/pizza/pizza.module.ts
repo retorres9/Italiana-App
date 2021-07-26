@@ -8,6 +8,9 @@ import { PizzaPageRoutingModule } from './pizza-routing.module';
 import { Component } from '@angular/core';
 
 import { PizzaPage } from './pizza.page';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
 
 
 @NgModule({
@@ -16,6 +19,8 @@ import { PizzaPage } from './pizza.page';
     FormsModule,
     IonicModule,
     PizzaPageRoutingModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
 
   ],
   declarations: [PizzaPage]

@@ -20,7 +20,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('../pizza/pizza.module').then((m) => m.PizzaPageModule),
       },
-
     ],
   },{
     path: '',

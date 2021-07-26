@@ -12,6 +12,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+
 import { firebaseConfig } from '../environments/environment';
 
 @NgModule({
@@ -31,6 +32,7 @@ import { firebaseConfig } from '../environments/environment';
     Geolocation,
     NativeGeocoder,
   ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}
