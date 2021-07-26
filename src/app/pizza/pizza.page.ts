@@ -1,14 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { ObtproductosService } from '../servicios/obtproductos.service';
 import { Producto } from './pizza.model';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase } from '@angular/fire/database';
-import  firebase from "firebase/app";
-import { ToastController } from '@ionic/angular';
-
-
-
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+interface Cart {
+  id: string;
+}
 
 @Component({
   selector: 'app-pizza',
@@ -18,19 +16,19 @@ import { ToastController } from '@ionic/angular';
 export class PizzaPage implements OnInit {
   products: Producto[] = [];
   segment: string = 'pizza';
-  @Input() producto: Producto;
-
+  cart = [];
+  sub:  Subscription;
   constructor(
     private obtproductos: ObtproductosService,
     private loadingCtrl: LoadingController,
-    private firebaseauth: AngularFireAuth,
-    private database: AngularFireDatabase,
-    private toastCtrl : ToastController
-
+    private router: Router,
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController
 
   ) {}
 
   ngOnInit() {
+    localStorage.setItem('cart', JSON.stringify(''));
     this.obtproductos.productopizza.subscribe((resp) => {
       this.products = resp;
 
@@ -38,11 +36,9 @@ export class PizzaPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    console.log(this.segment);
     this.segment = this.obtproductos.segment;
-    console.log(this.obtproductos.segment);
     this.loadingCtrl
-      .create({
+    .create({
         message: 'Obteniendo productos',
       })
       .then((loadingEl) => {
@@ -52,60 +48,89 @@ export class PizzaPage implements OnInit {
           loadingEl.dismiss();
         });
       });
-  }
-
-  segmentChanged(e) {
-    this.obtproductos.setSegment(e.detail.value)
-    this.segment = this.obtproductos.segment;
-  }
-
-// crear coleccion carritos y agregar pedidos
-  async addCarritoData(datos){
-    const user  = await this.firebaseauth.currentUser;
-    const userid = user.uid;
-    const carritoref = this.database.object('carritos/'+ userid + '/productos' );
-    try {
-      //await carritoref.push(datos);
-      const valorGuardar = { [`${datos.name}`]: firebase.database.ServerValue.increment(1)};
-      await carritoref.update(valorGuardar);
-      await carritoref.valueChanges().subscribe(resp =>{
-        console.log(resp);
-      })
-      this.presentToast();
-    } catch (error) {
     }
+
+    segmentChanged(e) {
+      this.obtproductos.setSegment(e.detail.value)
+      this.segment = this.obtproductos.segment;
+    }
+
+    addToCart(id: any) {
+      console.log(id);
+      const item = {
+      id: id
+    }
+    this.sub = this.obtproductos.productopizza.subscribe(
+      resp => {
+        resp.forEach(
+          product => {
+            if (product.id === id) {
+              const localCart = JSON.parse(localStorage.getItem('cart'));
+              if (!localCart) {
+                this.addToLocalStorage(product);
+                return;
+              }
+              const isIncluded = localCart.some(cart => {
+                return cart.id === id;
+              });
+
+              isIncluded ? this.duplicatedAlert(product) : this.addToLocalStorage(product);
+
+
+            }
+          }
+        )
+      }
+    )
+    this.sub.unsubscribe();
+
   }
 
-  //notificacion de pedido agregado
-   async presentToast() {
-    let toast = await this.toastCtrl.create({
-      message: 'Se agrego tu pedido al carrito',
+  duplicatedAlert(product: Producto){
+    this.alertCtrl.create({
+      header: 'Producto ya en carrito',
+      message: 'El producto seleccionado ya se encuentra en el carrito, ¿Desea agregar de todas formas al carrito?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
+          text: 'Agregar',
+          handler: () => {
+
+            this.addToLocalStorage(product)
+          }
+        }
+      ]
+    }).then(alertEl => {
+      alertEl.present();
+    })
+  }
+
+  addToLocalStorage(product: Producto) {
+    this.cart = [...this.cart, product];
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.showToast();
+  }
+
+  toCart() {
+    this.router.navigate(['cart']);
+  }
+
+
+  showToast() {
+    this.toastCtrl.create({
+      message: 'Producto agregado al carrito',
       duration: 2000,
-      position: 'top'
-    });
-
-    toast.present();
-  }
-
-
-
-  async DeleteCarritoData(datos){
-    const user  = await this.firebaseauth.currentUser;
-    const userid = user.uid;
-    const carritoref = this.database.object('carritos/'+ userid + '/productos' );
-    try {
-      //await carritoref.push(datos);
-      const valorGuardar = { [`${datos.name}`]: firebase.database.ServerValue.increment(-1)};
-      await carritoref.update(valorGuardar);
-      await carritoref.valueChanges().subscribe(resp =>{
-        console.log(resp);
-      })
-    } catch (error) {
-
-    }
+      position: 'bottom'
+    }).then(
+      toastEl => {
+        toastEl.present();
+      }
+    )
 
   }
-
 
 
 
