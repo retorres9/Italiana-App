@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Producto } from '../pizza/pizza.model';
 import { HttpClient } from '@angular/common/http';
 import { tap,map } from "rxjs/operators";
+import { Address } from './address.model';
 
 
 
@@ -49,6 +50,10 @@ export class ObtproductosService {
         return this._product.next(products)
       })
     )
+  }
+
+  getAddress(lat: number, lon: number) {
+    return this.http.get<Address>(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
   }
 
 }
