@@ -10,6 +10,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+
 import { firebaseConfig } from '../environments/environment';
 
 @NgModule({
@@ -28,6 +29,7 @@ import { firebaseConfig } from '../environments/environment';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Geolocation,
   ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

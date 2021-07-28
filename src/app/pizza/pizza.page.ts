@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 interface Cart {
   id: string;
 }
+
 @Component({
   selector: 'app-pizza',
   templateUrl: './pizza.page.html',
@@ -23,12 +24,14 @@ export class PizzaPage implements OnInit {
     private router: Router,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController
+
   ) {}
 
   ngOnInit() {
     localStorage.setItem('cart', JSON.stringify(''));
     this.obtproductos.productopizza.subscribe((resp) => {
       this.products = resp;
+
     });
   }
 
@@ -115,6 +118,7 @@ export class PizzaPage implements OnInit {
     this.router.navigate(['cart']);
   }
 
+
   showToast() {
     this.toastCtrl.create({
       message: 'Producto agregado al carrito',
@@ -127,5 +131,7 @@ export class PizzaPage implements OnInit {
     )
 
   }
+
+
 
 }

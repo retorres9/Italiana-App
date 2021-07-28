@@ -3,6 +3,7 @@ import { AuthService } from "../../app/servicios/auth.service";
 
 import { Router } from "@angular/router";
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -32,6 +33,7 @@ export class LoginPage implements OnInit {
       console.log(err);
     });
   }
+
 
   loginFace(){
     this.auth.loginFace().then(
