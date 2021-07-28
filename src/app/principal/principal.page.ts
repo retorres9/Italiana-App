@@ -23,7 +23,7 @@ export class PrincipalPage implements OnInit {
 
   ngOnInit() {
     const usuarioLocal = JSON.parse(localStorage.getItem('perfil'));
-    this.usuario = usuarioLocal.displayName;
+    usuarioLocal.displayName ? (this.usuario = usuarioLocal.displayName) : (this.usuario = usuarioLocal.name);
   }
 
   //metodo direccionamiento pagina Pizza
