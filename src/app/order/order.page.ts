@@ -11,6 +11,8 @@ import { ObtproductosService } from '../servicios/obtproductos.service';
 })
 export class OrderPage implements OnInit {
   address: any;
+  neighbourhood: string;
+  road: string;
 
   constructor(private router: Router,
               private loadingCtrl: LoadingController,
@@ -34,7 +36,10 @@ export class OrderPage implements OnInit {
               this.productService.getAddress(res.coords.latitude, res.coords.longitude).subscribe(
                 resp => {
                   loadingEl.dismiss();
-                  this.address = resp.display_name;
+                  console.log(resp);
+                  this.road = resp.address.road;
+                  this.neighbourhood = resp.address.neighbourhood;
+                  // this.address = resp.display_name;
                 }
               );
             }

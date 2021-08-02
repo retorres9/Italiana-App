@@ -6,7 +6,7 @@
 
 <ion-content class="fondo">
     <ion-grid>
-        <ion-row class="ion-padding">
+        <ion-row class="ion-no-padding">
             <ion-col size="12">
                 <ion-slides [options]="slideOpts" class="ion-matgin-top">
                     <ion-slide>
@@ -35,7 +35,7 @@
                         <img src="assets/pizza-cat.jpg" />
                     </ion-thumbnail>
 
-                    <ion-label (click)="pPizza('pizza')" class="ion-text-center">Pizzas</ion-label>
+                    <ion-label (click)="pPizza('pizza')" class="ion-text-left ion-padding-start">Pizzas</ion-label>
                 </ion-item>
             </ion-col>
             <ion-col size="6" class="ion-padding">
@@ -44,7 +44,7 @@
                         <img src="assets/1gas.jpg" />
                     </ion-thumbnail>
 
-                    <ion-label (click)="pPizza('bebidas')" class="ion-text-center">Bebidas</ion-label>
+                    <ion-label (click)="pPizza('bebidas')" class="ion-text-left ion-padding-start">Bebidas</ion-label>
                 </ion-item>
             </ion-col>
             <ion-col size="6" class="ion-padding">
@@ -52,7 +52,7 @@
                     <ion-thumbnail slot="start">
                         <img src="assets/postre.jpg" />
                     </ion-thumbnail>
-                    <ion-label (click)="pPizza('postres')" class="ion-text-center">Postres</ion-label>
+                    <ion-label (click)="pPizza('postres')" class="ion-text-left ion-padding-start">Postres</ion-label>
                 </ion-item>
             </ion-col>
             <ion-col size="6" class="ion-padding">
@@ -60,7 +60,7 @@
                     <ion-thumbnail slot="start">
                         <img src="assets/ensalada.jpg" />
                     </ion-thumbnail>
-                    <ion-label (click)="pPizza('ensaladas')" class="ion-text-center">Ensaladas</ion-label>
+                    <ion-label (click)="pPizza('ensaladas')" class="ion-text-left ion-padding-start">Ensaladas</ion-label>
                 </ion-item>
             </ion-col>
         </ion-row>
@@ -71,7 +71,7 @@
             <ion-col size="12">
                 <ion-slides [options]="slideOpts">
                     <ion-slide>
-                        <ion-card class="ion-margin">
+                        <ion-card class="ion-margin card-product">
                             <img src="assets/pizza-hut.png" alt="">
                             <ion-card-header>
                                 <ion-card-title class="ion-margin">
@@ -88,7 +88,7 @@
                         </ion-card>
                     </ion-slide>
                     <ion-slide>
-                        <ion-card class="ion-margin">
+                        <ion-card class="ion-margin card-product">
                             <img src="assets/pizza-hut.png" alt="">
                             <ion-card-header>
                                 <ion-card-title class="ion-margin">
@@ -105,7 +105,7 @@
                         </ion-card>
                     </ion-slide>
                     <ion-slide>
-                        <ion-card class="ion-margin">
+                        <ion-card class="ion-margin card-product">
                             <img src="assets/pizza-hut.png" alt="">
                             <ion-card-header>
                                 <ion-card-title class="ion-margin">

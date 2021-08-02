@@ -17,8 +17,10 @@
             Total a pagar: $10.00
         </ion-label>
     </ion-item>
-    <ion-item class="ion-text-wrap">
+    <ion-item>
         <ion-icon slot="start" name="navigate-outline"></ion-icon>
-        <ion-label>{{address}}</ion-label>
+        <ion-list>
+            Calle: {{road}} <br> Barrio: {{neighbourhood}}
+        </ion-list>
     </ion-item>
 </ion-content>

@@ -20,6 +20,7 @@ export class AuthService {
     // if(this.platform.platforms()[0] === 'desktop') {
     //   console.log('sdfsdfsd')
     // }
+    await GoogleAuth.init();
     const googleUser = await GoogleAuth.signIn();
     console.log(googleUser);
     return googleUser;
