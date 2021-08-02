@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { ObtproductosService } from '../servicios/obtproductos.service';
 import { Producto } from './pizza.model';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { WatchProductComponent } from './watch-product/watch-product.component';
 interface Cart {
   id: string;
 }
@@ -15,7 +16,7 @@ interface Cart {
 })
 export class PizzaPage implements OnInit {
   products: Producto[] = [];
-  segment: string = 'pizza';
+  segment: string = 'pizzas';
   cart = [];
   sub:  Subscription;
   constructor(
@@ -23,7 +24,8 @@ export class PizzaPage implements OnInit {
     private loadingCtrl: LoadingController,
     private router: Router,
     private alertCtrl: AlertController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private modalCtrl: ModalController
 
   ) {}
 
@@ -36,23 +38,13 @@ export class PizzaPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.segment = this.obtproductos.segment;
-    this.loadingCtrl
-    .create({
-        message: 'Obteniendo productos',
-      })
-      .then((loadingEl) => {
-        loadingEl.present();
-        this.obtproductos.getProducts().subscribe((resp) => {
-          this.products = resp;
-          loadingEl.dismiss();
-        });
-      });
+    this.fetchProducts()
     }
 
     segmentChanged(e) {
       this.obtproductos.setSegment(e.detail.value)
       this.segment = this.obtproductos.segment;
+      this.fetchProducts();
     }
 
     addToCart(id: any) {
@@ -84,6 +76,21 @@ export class PizzaPage implements OnInit {
     )
     this.sub.unsubscribe();
 
+  }
+
+  fetchProducts() {
+    this.segment = this.obtproductos.segment;
+    this.loadingCtrl
+    .create({
+        message: 'Obteniendo productos',
+      })
+      .then((loadingEl) => {
+        loadingEl.present();
+        this.obtproductos.getProducts(this.segment).subscribe((resp) => {
+          this.products = resp;
+          loadingEl.dismiss();
+        });
+      });
   }
 
   duplicatedAlert(product: Producto){
@@ -122,14 +129,31 @@ export class PizzaPage implements OnInit {
   showToast() {
     this.toastCtrl.create({
       message: 'Producto agregado al carrito',
-      duration: 2000,
-      position: 'bottom'
+      duration: 1500,
+      position: 'top',
+      translucent: true,
     }).then(
       toastEl => {
         toastEl.present();
       }
     )
+  }
 
+  watchProduct(id: string) {
+    const productIdx = this.products.findIndex(prod => prod.id === id);
+    this.modalCtrl.create({
+      component: WatchProductComponent,
+      backdropDismiss: true,
+      mode: 'ios',
+      swipeToClose: true,
+      componentProps: {
+        'product': this.products[productIdx]
+      }
+    }).then (
+      modalEl => {
+        modalEl.present();
+      }
+    )
   }
 
 

@@ -22,10 +22,15 @@ export class CartPage implements OnInit {
     if (this.cart.length === 0) {
       return;
     }
-    this.cart.forEach((product) => {
+    this.cart.forEach((product, id) => {
       console.log(product);
       product.quantity = 1;
       product.totalAmount = 0;
+      if (product.prices.length === 1) {
+        product.selectedType = product.prices[0].price;
+        this.calculatePrice(id);
+        this.calculateTotalAmount()
+      }
     });
     // this.cart.push( {"user": perfil.id});
     localStorage.removeItem('cart');

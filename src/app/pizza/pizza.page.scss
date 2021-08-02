@@ -3,11 +3,12 @@ ion-card-header {
 }
 
 ion-card-title {
-    width: 180px;
+    width: 65%;
 }
 
 ion-img {
-    max-width: 130px;
+    max-width: 100px;
+    height: 80px;
     position: absolute;
     z-index: 1;
     right: 25px;

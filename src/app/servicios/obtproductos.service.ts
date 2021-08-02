@@ -13,7 +13,7 @@ import { Address } from './address.model';
 })
 export class ObtproductosService {
   private _product = new BehaviorSubject<Producto[]>([]);
-  private _segment: string = 'pizza';
+  private _segment: string = 'pizzas';
   public get segment(): string {
     return this._segment;
   }
@@ -29,9 +29,9 @@ export class ObtproductosService {
     this._segment = tipo;
   }
 
-  getProducts(){
+  getProducts(segment: string){
     const product = new Producto();
-    return this.http.get<Producto[]>('https://proyectopizza-a1591-default-rtdb.firebaseio.com/pizzas.json').pipe(
+    return this.http.get<Producto[]>(`https://proyectopizza-a1591-default-rtdb.firebaseio.com/${segment}.json`).pipe(
       map(pizza =>{
         const products = [];
         for(const key in pizza){

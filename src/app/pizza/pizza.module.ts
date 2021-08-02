@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
 import { PizzaPage } from './pizza.page';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { WatchProductComponent } from './watch-product/watch-product.component';
 
 
 
@@ -23,7 +24,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     AngularFireAuthModule
 
   ],
-  declarations: [PizzaPage]
+  declarations: [PizzaPage, WatchProductComponent]
 })
 export class PizzaPageModule {
   segmentChanged(ev: any) {
