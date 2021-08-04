@@ -9,10 +9,10 @@
 </ion-header>
 
 <ion-content>
-    <ion-grid *ngIf="!cart" class="ion-text-center">
+    <ion-grid *ngIf="cart.length === 0" class="ion-text-center">
         <ion-text>No ha seleccionado ningún producto.</ion-text>
     </ion-grid>
-    <ion-grid class="ion-no-padding" *ngIf="cart">
+    <ion-grid class="ion-no-padding" *ngIf="cart.length >0">
 
         <ion-item-divider>
             <ion-label class="ion-padding-left">Detalle del carrito</ion-label>
@@ -21,7 +21,7 @@
         <ion-col size="12">
             <ion-item *ngFor="let product of cart; let i = index">
                 <ion-img st [src]="product.image"></ion-img>
-                <ion-button class="remove-item" size="small" shape="round" color="danger">
+                <ion-button class="remove-item" size="small" shape="round" color="danger" (click)="removeFromCart(i)">
                     <ion-icon name="close-outline" slot="icon-only"></ion-icon>
                 </ion-button>
                 <ion-card mode="ios">
@@ -35,7 +35,7 @@
 
                         <ion-item class="ion-no-padding" *ngIf="product.prices.length > 1">
                             <ion-label>Tamaño</ion-label>
-                            <ion-select placeholder="Seleccione el tamaño" (ionChange)="onTypeSelect($event, product.id, i)">
+                            <ion-select placeholder="Seleccione el tamaño" [value]="product.selectedType" (ionChange)="onTypeSelect($event, product.id, i)">
                                 <ion-select-option *ngFor="let price of product.prices" [value]="price.price">{{price.type}}</ion-select-option>
                             </ion-select>
                         </ion-item>
@@ -75,7 +75,7 @@
             </ion-item>
         </ion-col>
     </ion-grid>
-    <ion-item class="float-total ion-no-margin" *ngIf="cart" color="success" (click)="proccess()">
+    <ion-item class="float-total ion-no-margin" *ngIf="cart.length > 0" color="success" (click)="proccess()">
         <ion-label>Continuar con el pedido</ion-label>
         {{totalAmount | currency}}
         <ion-icon name="arrow-forward-outline"></ion-icon>

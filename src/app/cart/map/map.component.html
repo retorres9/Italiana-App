@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Seleccione la ubicación</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">Cerrar</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div id="mapView" (click)="onClickMap()"></div>
+    <ion-item>
+        <ion-icon slot="start" name="navigate-outline"></ion-icon>
+        <ion-label>Calle: {{road}}<br> Barrio: {{neighbourhood}}
+        </ion-label>
+        <!--  -->
+    </ion-item>
+    <ion-button color="primary" expand="block" fill="outline" [disabled]="isLoading" (click)="onNewAddress()">Guardar ubicación</ion-button>
+</ion-content>

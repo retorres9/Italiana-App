@@ -18,7 +18,7 @@ export class PizzaPage implements OnInit {
   products: Producto[] = [];
   segment: string = 'pizzas';
   cart = [];
-  sub:  Subscription;
+  // sub:  Subscription;
   constructor(
     private obtproductos: ObtproductosService,
     private loadingCtrl: LoadingController,
@@ -30,7 +30,6 @@ export class PizzaPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    localStorage.setItem('cart', JSON.stringify(''));
     this.obtproductos.productopizza.subscribe((resp) => {
       this.products = resp;
 
@@ -48,33 +47,32 @@ export class PizzaPage implements OnInit {
     }
 
     addToCart(id: any) {
-      console.log(id);
-      const item = {
-      id: id
-    }
-    this.sub = this.obtproductos.productopizza.subscribe(
-      resp => {
-        resp.forEach(
-          product => {
-            if (product.id === id) {
-              const localCart = JSON.parse(localStorage.getItem('cart'));
-              if (!localCart) {
-                this.addToLocalStorage(product);
-                return;
-              }
-              const isIncluded = localCart.some(cart => {
-                return cart.id === id;
-              });
+    let sub = JSON.parse(localStorage.getItem('cart'));
+    let product = JSON.parse(localStorage.getItem(`${this.segment}`));
+    console.log(product);
 
-              isIncluded ? this.duplicatedAlert(product) : this.addToLocalStorage(product);
+    let productIdx = product.findIndex(prod => prod.id === id);
+    console.log(productIdx);
 
+    const isIncluded = sub.some(prod => {
 
-            }
-          }
-        )
-      }
-    )
-    this.sub.unsubscribe();
+      return prod.id === id ? true:false;
+        // const localCart = JSON.parse(localStorage.getItem('cart'));
+      //   if (!sub) {
+      //     this.addToLocalStorage(prod);
+
+      //   }
+      //   const isIncluded = sub.some(cart => {
+      //     console.log(cart.id === id);
+
+      //     return cart.id === id;
+      //   });
+      //   console.log(isIncluded);
+
+      // }
+    });
+    isIncluded ? this.duplicatedAlert(product[productIdx]) : this.addToLocalStorage(product[productIdx]);
+    console.log(isIncluded);
 
   }
 
@@ -85,6 +83,10 @@ export class PizzaPage implements OnInit {
         message: 'Obteniendo productos',
       })
       .then((loadingEl) => {
+        this.products = JSON.parse(localStorage.getItem(`${this.segment}`))
+        if (this.products) {
+          return;
+        }
         loadingEl.present();
         this.obtproductos.getProducts(this.segment).subscribe((resp) => {
           this.products = resp;
@@ -116,6 +118,9 @@ export class PizzaPage implements OnInit {
   }
 
   addToLocalStorage(product: Producto) {
+    console.log([...this.cart]);
+    let localCart = [...this.cart];
+    console.log(localCart);
     this.cart = [...this.cart, product];
     localStorage.setItem('cart', JSON.stringify(this.cart));
     this.showToast();

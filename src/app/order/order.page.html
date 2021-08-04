@@ -14,13 +14,18 @@
     <ion-item>
         <ion-icon slot="start" name="cash-outline"></ion-icon>
         <ion-label>
-            Total a pagar: $10.00
+            <strong>Total a pagar:</strong> {{totalAmount | currency}}
         </ion-label>
     </ion-item>
     <ion-item>
         <ion-icon slot="start" name="navigate-outline"></ion-icon>
         <ion-list>
-            Calle: {{road}} <br> Barrio: {{neighbourhood}}
+            <strong>Calle:</strong> {{road}} <br> <strong>Barrio:</strong> {{neighbourhood}} <br>
+            <ion-button color="primary" shape="rounded">Agregar referencia</ion-button>
+            <ion-button color="secondary" shape="rounded" (click)="onSelectAddress()">Selecciona ubicación</ion-button>
         </ion-list>
     </ion-item>
+    <div id="btnDelivery">
+        <ion-button color="primary" expand="full" size="default">Realizar pedido</ion-button>
+    </div>
 </ion-content>
