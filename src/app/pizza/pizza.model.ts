@@ -5,6 +5,9 @@ export class Producto{
   name: string;
   description: string;
   prices: Price [];
-  image: string
+  image: string;
+  quantity?: number;
+  selectedType: number;
+  totalAmount: number;
 }
 

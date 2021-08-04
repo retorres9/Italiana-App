@@ -5,7 +5,7 @@ import { OrderPage } from './order.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':amount',
     component: OrderPage
   }
 ];

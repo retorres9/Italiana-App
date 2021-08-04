@@ -44,6 +44,9 @@ export class ObtproductosService {
           }
           products.push({...product});
         }
+        localStorage.setItem(`${segment}`, JSON.stringify(products));
+        let asd = JSON.parse(localStorage.getItem(`${segment}`));
+        console.log(asd);
         return products;
       }),
       tap((products)=>{

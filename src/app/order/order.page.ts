@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
 import { ObtproductosService } from '../servicios/obtproductos.service';
+import { MapComponent } from '../cart/map/map.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-order',
@@ -13,12 +15,24 @@ export class OrderPage implements OnInit {
   address: any;
   neighbourhood: string;
   road: string;
+  totalAmount: number;
+  sub: Subscription
 
   constructor(private router: Router,
               private loadingCtrl: LoadingController,
-              private productService: ObtproductosService) { }
+              private productService: ObtproductosService,
+              private activatedRoute: ActivatedRoute,
+              private modalCtrl: ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.activatedRoute.params.subscribe(({amount}) => {
+      console.log(amount);
+
+        this.totalAmount = Number(amount);
+    });
+    console.log(this.totalAmount);
+
+  }
 
   ionViewWillEnter() {
     this.loadingCtrl.create({
@@ -26,24 +40,33 @@ export class OrderPage implements OnInit {
     }).then(
       loadingEl => {
         loadingEl.present();
-
-          console.log('askdjaskjdaksjd');
           this.address = Geolocation.getCurrentPosition(
             {enableHighAccuracy: true}
           ).then(
             res => {
               console.log(res);
-              this.productService.getAddress(res.coords.latitude, res.coords.longitude).subscribe(
+              this.sub = this.productService.getAddress(res.coords.latitude, res.coords.longitude).subscribe(
                 resp => {
                   loadingEl.dismiss();
                   console.log(resp);
                   this.road = resp.address.road;
                   this.neighbourhood = resp.address.neighbourhood;
-                  // this.address = resp.display_name;
                 }
               );
             }
           );
+      }
+    )
+  }
+
+  onSelectAddress() {
+    this.modalCtrl.create({
+      component: MapComponent,
+      backdropDismiss: true,
+      swipeToClose: true
+    }).then(
+      modalEl => {
+        modalEl.present();
       }
     )
   }

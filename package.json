@@ -34,6 +34,7 @@
     "@ionic/angular": "^5.5.2",
     "css-what": "^5.0.1",
     "firebase": "^8.6.8",
+    "leaflet": "^1.7.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
