@@ -30,10 +30,10 @@ export class PizzaPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.obtproductos.productopizza.subscribe((resp) => {
-      this.products = resp;
+    // this.obtproductos.productopizza.subscribe((resp) => {
+    //   this.products = resp;
 
-    });
+    // });
   }
 
   ionViewWillEnter() {
@@ -71,6 +71,8 @@ export class PizzaPage implements OnInit {
 
       // }
     });
+    console.log(isIncluded);
+
     isIncluded ? this.duplicatedAlert(product[productIdx]) : this.addToLocalStorage(product[productIdx]);
     console.log(isIncluded);
 
@@ -119,8 +121,10 @@ export class PizzaPage implements OnInit {
 
   addToLocalStorage(product: Producto) {
     console.log([...this.cart]);
-    let localCart = [...this.cart];
+
+    let localCart = JSON.parse(localStorage.getItem('cart'));
     console.log(localCart);
+    this.cart = localCart;
     this.cart = [...this.cart, product];
     localStorage.setItem('cart', JSON.stringify(this.cart));
     this.showToast();

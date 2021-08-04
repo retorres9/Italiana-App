@@ -24,7 +24,7 @@
                 <ion-button class="remove-item" size="small" shape="round" color="danger" (click)="removeFromCart(i)">
                     <ion-icon name="close-outline" slot="icon-only"></ion-icon>
                 </ion-button>
-                <ion-card mode="ios">
+                <ion-card mode="ios" [ngClass]="{'validate-card': !product.selectedType}">
 
                     <ion-card-header>
                         <ion-card-title>
