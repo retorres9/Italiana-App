@@ -9,8 +9,8 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ion-card class="ion-text-center">
-        <ion-img [src]="product.image"></ion-img>
+    <ion-card class="ion-text-center" color="primary">
+        <ion-img [src]="product.image" class="ion-no-margin"></ion-img>
         <ion-card-header>
             <ion-card-title>
                 {{product.name}}
@@ -20,11 +20,11 @@
             </ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-            <ion-list-header mode="ios" *ngIf="product.prices.length > 1">
+            <ion-list-header mode="ios" *ngIf="product.prices.length > 1" color="primary">
                 Precios
             </ion-list-header>
             <ion-list>
-                <ion-item *ngFor="let price of product.prices">
+                <ion-item color="primary" *ngFor="let price of product.prices">
                     <ion-label *ngIf="product.prices.length > 1">
                         {{price.type}}
                     </ion-label>

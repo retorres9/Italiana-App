@@ -21,6 +21,11 @@ export class CartPage implements OnInit {
   ngOnInit() {
     let perfil = JSON.parse(localStorage.getItem('perfil'));
     this.cart = JSON.parse(localStorage.getItem('cart'));
+    if (this.cart === null) {
+      console.log('entrando');
+
+      localStorage.setItem('cart', JSON.stringify(''));
+    }
     if (this.cart.length === 0) {
       return;
     }

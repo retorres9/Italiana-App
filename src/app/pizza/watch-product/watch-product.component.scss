@@ -1,4 +1,11 @@
 ion-img {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+ion-img {
     width: 50%;
     display: -webkit-inline-flex;
 }

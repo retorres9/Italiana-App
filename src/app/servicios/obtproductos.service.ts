@@ -5,9 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { tap,map } from "rxjs/operators";
 import { Address } from './address.model';
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +28,7 @@ export class ObtproductosService {
 
   getProducts(segment: string){
     const product = new Producto();
-    return this.http.get<Producto[]>(`https://proyectopizza-a1591-default-rtdb.firebaseio.com/${segment}.json`).pipe(
+    return this.http.get<Producto[]>(`https://proyectopizza-a1591-default-rtdb.firebaseio.com/products.json`).pipe(
       map(pizza =>{
         const products = [];
         for(const key in pizza){
@@ -44,9 +41,7 @@ export class ObtproductosService {
           }
           products.push({...product});
         }
-        localStorage.setItem(`${segment}`, JSON.stringify(products));
-        let asd = JSON.parse(localStorage.getItem(`${segment}`));
-        console.log(asd);
+        localStorage.setItem('products', JSON.stringify(products));
         return products;
       }),
       tap((products)=>{
@@ -56,7 +51,12 @@ export class ObtproductosService {
   }
 
   getAddress(lat: number, lon: number) {
-    return this.http.get<Address>(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
+    return this.http.get<Address>(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`).pipe(
+      map(resp => {
+        localStorage.setItem('address', JSON.stringify(resp));
+        return resp;
+      })
+    );
   }
 
 }

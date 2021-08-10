@@ -37,55 +37,45 @@ export class PizzaPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.fetchProducts()
+    this.fetchProducts(this.segment);
     }
 
     segmentChanged(e) {
-      this.obtproductos.setSegment(e.detail.value)
+      this.obtproductos.setSegment(e.detail.value);
       this.segment = this.obtproductos.segment;
-      this.fetchProducts();
+      this.fetchProducts(this.segment);
     }
 
     addToCart(id: any) {
     let sub = JSON.parse(localStorage.getItem('cart'));
-    let product = JSON.parse(localStorage.getItem(`${this.segment}`));
-    console.log(product);
+    sub === null ? localStorage.setItem('cart', JSON.stringify('')): false;
+    sub = JSON.parse(localStorage.getItem('cart'));
+    // return;
+    let products = JSON.parse(localStorage.getItem('products'));
+    let productIdx = products.findIndex(product => product.id === id);
+    if (sub.length === 0) {
+      this.addToLocalStorage(products[productIdx]);
+    }
+     else {
+      const isIncluded = sub.some(prod => {
+        return prod.id === id ? true:false;
+      });
+      isIncluded ? this.duplicatedAlert(products[productIdx]) : this.addToLocalStorage(products[productIdx]);
+      console.log(isIncluded);
+    }
 
-    let productIdx = product.findIndex(prod => prod.id === id);
-    console.log(productIdx);
-
-    const isIncluded = sub.some(prod => {
-
-      return prod.id === id ? true:false;
-        // const localCart = JSON.parse(localStorage.getItem('cart'));
-      //   if (!sub) {
-      //     this.addToLocalStorage(prod);
-
-      //   }
-      //   const isIncluded = sub.some(cart => {
-      //     console.log(cart.id === id);
-
-      //     return cart.id === id;
-      //   });
-      //   console.log(isIncluded);
-
-      // }
-    });
-    console.log(isIncluded);
-
-    isIncluded ? this.duplicatedAlert(product[productIdx]) : this.addToLocalStorage(product[productIdx]);
-    console.log(isIncluded);
 
   }
 
-  fetchProducts() {
+  fetchProducts(segment: string) {
     this.segment = this.obtproductos.segment;
     this.loadingCtrl
     .create({
         message: 'Obteniendo productos',
       })
       .then((loadingEl) => {
-        this.products = JSON.parse(localStorage.getItem(`${this.segment}`))
+        this.products = JSON.parse(localStorage.getItem('products'))
+        this.products = this.products.filter(product => product.type === segment)
         if (this.products) {
           return;
         }
@@ -120,10 +110,8 @@ export class PizzaPage implements OnInit {
   }
 
   addToLocalStorage(product: Producto) {
-    console.log([...this.cart]);
 
     let localCart = JSON.parse(localStorage.getItem('cart'));
-    console.log(localCart);
     this.cart = localCart;
     this.cart = [...this.cart, product];
     localStorage.setItem('cart', JSON.stringify(this.cart));
@@ -165,6 +153,9 @@ export class PizzaPage implements OnInit {
     )
   }
 
+  searchItem(search) {
+    console.log(search.value);
 
+  }
 
 }

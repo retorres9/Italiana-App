@@ -1,6 +1,6 @@
 <ion-header>
-    <ion-toolbar color="primary" class="ion-padding-start">
-        <ion-title class="ion-text-left"> <strong> Hola, {{usuario}} </strong> </ion-title>
+    <ion-toolbar color="primary">
+        <ion-title class="ion-text-center"> <strong> Hola, {{usuario}} </strong> </ion-title>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
@@ -32,7 +32,7 @@
             <ion-col size="12">
                 <h2><strong>Categorias</strong></h2>
             </ion-col>
-            <ion-col size="6" class="ion-padding">
+            <ion-col size="6" class="ion-padding-bottom ion-padding-start">
                 <ion-item class="ion-no-padding">
                     <ion-thumbnail slot="start">
                         <img src="assets/pizza-cat.jpg" />
@@ -41,7 +41,7 @@
                     <ion-label (click)="pPizza('pizza')" class="ion-text-left ion-padding-start">Pizzas</ion-label>
                 </ion-item>
             </ion-col>
-            <ion-col size="6" class="ion-padding">
+            <ion-col size="6" class="ion-padding-bottom ion-padding-start">
                 <ion-item class="ion-no-padding">
                     <ion-thumbnail slot="start">
                         <img src="assets/1gas.jpg" />
@@ -50,7 +50,7 @@
                     <ion-label (click)="pPizza('bebidas')" class="ion-text-left ion-padding-start">Bebidas</ion-label>
                 </ion-item>
             </ion-col>
-            <ion-col size="6" class="ion-padding">
+            <ion-col size="6" class="ion-padding-bottom ion-padding-start">
                 <ion-item class="ion-no-padding">
                     <ion-thumbnail slot="start">
                         <img src="assets/postre.jpg" />
@@ -58,7 +58,7 @@
                     <ion-label (click)="pPizza('postres')" class="ion-text-left ion-padding-start">Postres</ion-label>
                 </ion-item>
             </ion-col>
-            <ion-col size="6" class="ion-padding">
+            <ion-col size="6" class="ion-padding-bottom ion-padding-start">
                 <ion-item class="ion-no-padding">
                     <ion-thumbnail slot="start">
                         <img src="assets/ensalada.jpg" />

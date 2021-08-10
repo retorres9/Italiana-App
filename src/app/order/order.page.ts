@@ -34,8 +34,10 @@ export class OrderPage implements OnInit {
 
   }
 
+
   ionViewWillEnter() {
-    this.loadingCtrl.create({
+      localStorage.setItem('address', JSON.stringify(''));
+      this.loadingCtrl.create({
       message: 'Obteniendo su ubicación'
     }).then(
       loadingEl => {
@@ -45,6 +47,14 @@ export class OrderPage implements OnInit {
           ).then(
             res => {
               console.log(res);
+              const address = JSON.parse(localStorage.getItem('address'));
+              // if (address.length <1) {
+              //   localStorage.setItem('address', JSON.stringify(''));
+              // }
+              if (address.length > 0 ) {
+                loadingEl.dismiss();
+                return;
+              }
               this.sub = this.productService.getAddress(res.coords.latitude, res.coords.longitude).subscribe(
                 resp => {
                   loadingEl.dismiss();
