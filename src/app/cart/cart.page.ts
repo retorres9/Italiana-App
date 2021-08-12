@@ -22,7 +22,6 @@ export class CartPage implements OnInit {
     let perfil = JSON.parse(localStorage.getItem('perfil'));
     this.cart = JSON.parse(localStorage.getItem('cart'));
     if (this.cart === null) {
-      console.log('entrando');
 
       localStorage.setItem('cart', JSON.stringify(''));
     }
@@ -63,7 +62,6 @@ export class CartPage implements OnInit {
 
   addQuantity(id: string, index: number) {
     let cartIdx = this.cart.findIndex((cart) => cart.id === id);
-    console.log(cartIdx);
     ++this.cart[index].quantity;
     this.calculatePrice(index);
   }
@@ -89,7 +87,6 @@ export class CartPage implements OnInit {
   }
 
   proccess() {
-    console.log('Procesar pedido');
     this.totalAmount > 0 ? this.router.navigate(['order', `${this.totalAmount}`]) : this.showAlert();
 
   }

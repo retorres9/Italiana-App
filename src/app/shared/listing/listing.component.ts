@@ -1,48 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Producto } from '../../pizza/pizza.model';
 import {
   AlertController,
-  LoadingController,
   ModalController,
   ToastController,
 } from '@ionic/angular';
-import { ObtproductosService } from '../servicios/obtproductos.service';
-import { Producto } from './pizza.model';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { WatchComponent } from '../shared/watch/watch.component';
-interface Cart {
-  id: string;
-}
+import { WatchComponent } from '../watch/watch.component';
 
 @Component({
-  selector: 'app-pizza',
-  templateUrl: './pizza.page.html',
-  styleUrls: ['./pizza.page.scss'],
+  selector: 'app-listing',
+  templateUrl: './listing.component.html',
+  styleUrls: ['./listing.component.scss'],
 })
-export class PizzaPage implements OnInit {
-  products: Producto[] = [];
-  segment: string = 'pizzas';
+export class ListingComponent implements OnInit {
+  @Input() products: Producto[];
   cart = [];
-  // sub:  Subscription;
   constructor(
-    private obtproductos: ObtproductosService,
-    private loadingCtrl: LoadingController,
-    private router: Router,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
     private modalCtrl: ModalController
   ) {}
 
-  ngOnInit() {}
-
-  ionViewWillEnter() {
-    this.fetchProducts(this.segment);
-  }
-
-  segmentChanged(e) {
-    this.obtproductos.setSegment(e.detail.value);
-    this.segment = this.obtproductos.segment;
-    this.fetchProducts(this.segment);
+  ngOnInit() {
+    // console.log(this.products);
   }
 
   addToCart(id: any) {
@@ -62,29 +42,6 @@ export class PizzaPage implements OnInit {
         ? this.duplicatedAlert(products[productIdx])
         : this.addToLocalStorage(products[productIdx]);
     }
-  }
-
-  fetchProducts(segment: string) {
-    this.segment = this.obtproductos.segment;
-    this.loadingCtrl
-      .create({
-        message: 'Obteniendo productos',
-      })
-      .then((loadingEl) => {
-        let productLocal = JSON.parse(localStorage.getItem('products'));
-
-        if (productLocal === null) {
-          loadingEl.present();
-          this.obtproductos.getProducts(this.segment).subscribe((resp) => {
-            productLocal = resp;
-            loadingEl.dismiss();
-          });
-        }
-        productLocal = JSON.parse(localStorage.getItem('products'));
-        this.products = productLocal.filter(product => {
-          return product.type === segment;
-        });
-      });
   }
 
   duplicatedAlert(product: Producto) {
@@ -117,10 +74,6 @@ export class PizzaPage implements OnInit {
     this.cart = [...this.cart, product];
     localStorage.setItem('cart', JSON.stringify(this.cart));
     this.showToast();
-  }
-
-  toCart() {
-    this.router.navigate(['cart']);
   }
 
   showToast() {

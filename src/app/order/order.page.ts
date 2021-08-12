@@ -26,11 +26,9 @@ export class OrderPage implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(({amount}) => {
-      console.log(amount);
 
         this.totalAmount = Number(amount);
     });
-    console.log(this.totalAmount);
 
   }
 
@@ -58,7 +56,6 @@ export class OrderPage implements OnInit {
               this.sub = this.productService.getAddress(res.coords.latitude, res.coords.longitude).subscribe(
                 resp => {
                   loadingEl.dismiss();
-                  console.log(resp);
                   this.road = resp.address.road;
                   this.neighbourhood = resp.address.neighbourhood;
                 }

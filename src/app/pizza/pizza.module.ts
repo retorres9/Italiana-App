@@ -5,12 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { PizzaPageRoutingModule } from './pizza-routing.module';
-import { Component } from '@angular/core';
 
 import { PizzaPage } from './pizza.page';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { WatchProductComponent } from './watch-product/watch-product.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -21,10 +20,11 @@ import { WatchProductComponent } from './watch-product/watch-product.component';
     IonicModule,
     PizzaPageRoutingModule,
     AngularFireDatabaseModule,
-    AngularFireAuthModule
-
+    AngularFireAuthModule,
+    SharedModule
   ],
-  declarations: [PizzaPage, WatchProductComponent]
+  declarations: [PizzaPage],
+  exports: []
 })
 export class PizzaPageModule {
   segmentChanged(ev: any) {

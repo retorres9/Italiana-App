@@ -18,8 +18,12 @@ const routes: Routes = [
       {
         path: 'pizza',
         loadChildren: () =>
-          import('../pizza/pizza.module').then((m) => m.PizzaPageModule),
+          import('../pizza/pizza.module').then(m => m.PizzaPageModule),
       },
+      {
+        path: 'search',
+        loadChildren: () => import('../search/search.module').then(m => m.SearchPageModule)
+      }
     ],
   },{
     path: '',

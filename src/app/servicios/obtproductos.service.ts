@@ -38,6 +38,7 @@ export class ObtproductosService {
             product.description = pizza[key].description;
             product.prices = pizza[key].prices;
             product.image = pizza[key].image;
+            product.type = pizza[key].type;
           }
           products.push({...product});
         }
