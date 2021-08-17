@@ -8,6 +8,7 @@ import { SearchPageRoutingModule } from './search-routing.module';
 
 import { SearchPage } from './search.page';
 import { SharedModule } from '../shared/shared.module';
+import { OrderPipe } from './order.pipe';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { SharedModule } from '../shared/shared.module';
     SearchPageRoutingModule,
     SharedModule
   ],
-  declarations: [SearchPage]
+  declarations: [SearchPage, OrderPipe]
 })
 export class SearchPageModule {}

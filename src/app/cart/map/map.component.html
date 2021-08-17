@@ -7,12 +7,15 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div id="mapView" (click)="onClickMap()"></div>
+    <ion-item>
+        <ion-icon name="alert-circle-outline" slot="start" color="primary"></ion-icon>
+        <ion-label class="ion-text-wrap">Mueva el marcador a la posición donde desea se envie su pedido.</ion-label>
+    </ion-item>
+    <div id="mapView"></div>
     <ion-item>
         <ion-icon slot="start" name="navigate-outline"></ion-icon>
         <ion-label>Calle: {{road}}<br> Barrio: {{neighbourhood}}
         </ion-label>
-        <!--  -->
     </ion-item>
-    <ion-button color="primary" expand="block" fill="outline" [disabled]="isLoading" (click)="onNewAddress()">Guardar ubicación</ion-button>
+    <ion-button color="primary" expand="block" fill="outline" [disabled]="isLoading" (click)="onSaveNewAddress()">Guardar ubicación</ion-button>
 </ion-content>

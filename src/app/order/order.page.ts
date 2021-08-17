@@ -36,7 +36,8 @@ export class OrderPage implements OnInit {
   ionViewWillEnter() {
       localStorage.setItem('address', JSON.stringify(''));
       this.loadingCtrl.create({
-      message: 'Obteniendo su ubicación'
+      message: 'Obteniendo su ubicación',
+      backdropDismiss: true
     }).then(
       loadingEl => {
         loadingEl.present();
@@ -46,8 +47,6 @@ export class OrderPage implements OnInit {
             res => {
               console.log(res);
               const address = JSON.parse(localStorage.getItem('address'));
-              // if (address.length <1) {
-              //   localStorage.setItem('address', JSON.stringify(''));
               // }
               if (address.length > 0 ) {
                 loadingEl.dismiss();
@@ -75,7 +74,7 @@ export class OrderPage implements OnInit {
       modalEl => {
         modalEl.present();
       }
-    )
+    );
   }
 
 }

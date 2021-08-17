@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LoadingController, ModalController } from '@ionic/angular';
 import * as Leaflet from 'leaflet';
 import { Subscription } from 'rxjs';
 import { ObtproductosService } from '../../servicios/obtproductos.service';
+import { Address } from '../../servicios/address.model';
 
 @Component({
   selector: 'app-map',
@@ -19,6 +20,8 @@ export class MapComponent implements OnInit {
   isLoading: boolean = false;
   sub: Subscription;
   coordinates: any;
+  newAddress: Address;
+
   constructor(
     private modalCtrl: ModalController,
     private productService: ObtproductosService,
@@ -27,15 +30,18 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {}
 
-  onClickMap() {
-    this.isLoading = true;
-    this.map.on('click', (ev) => {
-      let popup = Leaflet.popup()
-        .setLatLng(ev.latlng)
-        .setContent('Nueva ubicación')
-        .openOn(this.map);
-        this.coordinates = ev.latlng;
-      });
+
+
+  onClickMap(lat, lng) {
+    // this.isLoading = true;
+    // this.map.on('click', (ev) => {
+    //   let mark = Leaflet.marker([ev.latlng.lat, ev.latlng.lng])
+    //     .setLatLng(ev.latlng)
+    //     .setContent('Nueva ubicación')
+    //     .openOn(this.map);
+    //     this.coordinates = ev.latlng;
+    //   });
+    // this.map
       this.loadingCtrl
         .create({
           message: 'Obteniendo ubicación',
@@ -43,8 +49,9 @@ export class MapComponent implements OnInit {
         .then((loadingEl) => {
           loadingEl.present();
           this.sub = this.productService
-            .getAddress(this.coordinates.lat, this.coordinates.lng)
+            .getAddress(lat, lng)
             .subscribe((resp) => {
+              this.newAddress = resp;
               console.log(resp);
               this.road = resp.address.road;
               this.neighbourhood = resp.address.neighbourhood;
@@ -60,23 +67,33 @@ export class MapComponent implements OnInit {
   }
 
   leafletMap() {
+    const address = JSON.parse(localStorage.getItem('address'));
     this.map = Leaflet.map('mapView').setView(
-      [-4.3247032999999995, -79.5529663],
+      [address.lat, address.lon],
       18
     );
     Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attibution: 'Pizzería La Italiana',
     }).addTo(this.map);
-    Leaflet.marker([-4.3247032999999995, -79.5529663], {
+    let center =this.map.getCenter();
+    console.log(center);
+    let mark = Leaflet.marker([address.lat, address.lon], {
       icon: this.myIcon,
+      draggable: true
     }).addTo(this.map);
+    mark.on('dragend', (ev) => {
+      console.log(ev.target);
+      this.onClickMap(ev.target._latlng.lat, ev.target._latlng.lng);
+    });
   }
 
   closeModal() {
     this.modalCtrl.dismiss();
   }
 
-  onNewAddress() {
+  onSaveNewAddress() {
+    localStorage.setItem('address', JSON.stringify(this.newAddress));
+
     this.modalCtrl.dismiss();
   }
 }
