@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
 import { ObtproductosService } from '../servicios/obtproductos.service';
-import { MapComponent } from '../cart/map/map.component';
+import { MapComponent } from './map/map.component';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -65,16 +65,22 @@ export class OrderPage implements OnInit {
     )
   }
 
-  onSelectAddress() {
-    this.modalCtrl.create({
+  async onSelectAddress() {
+    const modal = await this.modalCtrl.create({
       component: MapComponent,
       backdropDismiss: true,
       swipeToClose: true
-    }).then(
-      modalEl => {
-        modalEl.present();
-      }
-    );
+    });
+    modal.onDidDismiss()
+      .then((data) => {
+        const newAddress = data['data'];
+        console.log(newAddress.address);
+        this.address = newAddress;
+        this.neighbourhood = newAddress.address.address.neighbourhood;
+        this.road = newAddress.address.address.road;
+    });
+
+    return await modal.present();
   }
 
 }

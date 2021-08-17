@@ -94,6 +94,8 @@ export class MapComponent implements OnInit {
   onSaveNewAddress() {
     localStorage.setItem('address', JSON.stringify(this.newAddress));
 
-    this.modalCtrl.dismiss();
+    this.modalCtrl.dismiss({
+      'address': this.newAddress
+    });
   }
 }
