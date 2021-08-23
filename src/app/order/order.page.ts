@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingController, ModalController } from '@ionic/angular';
+import { LoadingController, ModalController, AlertController } from '@ionic/angular';
 import { Geolocation } from '@capacitor/geolocation';
 import { ObtproductosService } from '../servicios/obtproductos.service';
 import { MapComponent } from './map/map.component';
@@ -17,12 +17,14 @@ export class OrderPage implements OnInit {
   road: string;
   totalAmount: number;
   sub: Subscription
+  orderReference: string;
 
   constructor(private router: Router,
               private loadingCtrl: LoadingController,
               private productService: ObtproductosService,
               private activatedRoute: ActivatedRoute,
-              private modalCtrl: ModalController) { }
+              private modalCtrl: ModalController,
+              private alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(({amount}) => {
@@ -83,4 +85,31 @@ export class OrderPage implements OnInit {
     return await modal.present();
   }
 
+  addReference() {
+    this.alertCtrl.create({
+      message: 'Ingrese la referencia para la entrega de su pedido',
+      inputs: [
+        {
+          name: 'reference',
+          id: 'reference',
+          type: 'textarea',
+          placeholder: 'Ingrese aquí la referncia'
+        }
+      ],
+      buttons: [
+        {
+          role: 'cancel',
+          text: 'Cancelar'
+        },
+        {
+          text: 'Guardar',
+          handler: (userInput) => {
+            this.orderReference = userInput.reference;
+          }
+        }
+      ]
+    }).then( alertElement => {
+      alertElement.present();
+    })
+  }
 }

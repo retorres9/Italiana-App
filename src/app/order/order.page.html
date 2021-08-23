@@ -20,8 +20,10 @@
     <ion-item>
         <ion-icon slot="start" name="navigate-outline"></ion-icon>
         <ion-list>
+
             <strong>Calle:</strong> {{road}} <br> <strong>Barrio:</strong> {{neighbourhood}} <br>
-            <ion-button color="primary" shape="rounded">Agregar referencia</ion-button>
+            <strong>Referencia:</strong> {{orderReference}}<br>
+            <ion-button color="primary" shape="rounded" (click)="addReference()">Agregar referencia</ion-button>
             <ion-button color="secondary" shape="rounded" (click)="onSelectAddress()">Selecciona ubicación</ion-button>
         </ion-list>
     </ion-item>
