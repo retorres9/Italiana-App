@@ -5,6 +5,7 @@ import { Geolocation } from '@capacitor/geolocation';
 import { ObtproductosService } from '../servicios/obtproductos.service';
 import { MapComponent } from './map/map.component';
 import { Subscription } from 'rxjs';
+import { Order } from './order.model';
 
 @Component({
   selector: 'app-order',
@@ -17,7 +18,9 @@ export class OrderPage implements OnInit {
   road: string;
   totalAmount: number;
   sub: Subscription
-  orderReference: string;
+  orderReference: string = '';
+  // order: Order
+  isOrderOk: boolean = false;
 
   constructor(private router: Router,
               private loadingCtrl: LoadingController,
@@ -112,4 +115,43 @@ export class OrderPage implements OnInit {
       alertElement.present();
     })
   }
+
+  buildOrder() {
+    const user = JSON.parse(localStorage.getItem('perfil'));
+    const address = JSON.parse(localStorage.getItem('address'));
+    const order = new Order();
+    order.userId = user.id;
+    order.latlng = [address.lat, address.lon];
+    order.reference = this.orderReference;
+    console.log(order);
+
+
+  }
+
+  async sendOrder() {
+    this.orderReference ? this.buildOrder() : await this.showNoRefAlert();
+  }
+
+  private showNoRefAlert() {
+    this.alertCtrl.create({
+      header: 'Pedido sin referencia',
+      message: 'Para mejorar la entrega es recomendable ingresar una referencia',
+      buttons: [{
+        role: 'cancel',
+        text: 'Cancelar'
+      },
+      {
+        text: 'Continuar',
+        handler: () => {
+          this.buildOrder();
+        }
+      }
+    ]
+    }).then(
+      async alertElement => {
+        await alertElement.present();
+      }
+    );
+  }
 }
+

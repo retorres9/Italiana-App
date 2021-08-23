@@ -21,6 +21,7 @@ export class MapComponent implements OnInit {
   sub: Subscription;
   coordinates: any;
   newAddress: Address;
+  latLong: any;
 
   constructor(
     private modalCtrl: ModalController,
@@ -32,32 +33,24 @@ export class MapComponent implements OnInit {
 
 
 
-  onClickMap(lat, lng) {
-    // this.isLoading = true;
-    // this.map.on('click', (ev) => {
-    //   let mark = Leaflet.marker([ev.latlng.lat, ev.latlng.lng])
-    //     .setLatLng(ev.latlng)
-    //     .setContent('Nueva ubicación')
-    //     .openOn(this.map);
-    //     this.coordinates = ev.latlng;
-    //   });
-    // this.map
+  onNewAddress() {
       this.loadingCtrl
         .create({
           message: 'Obteniendo ubicación',
         })
-        .then((loadingEl) => {
-          loadingEl.present();
+        .then(async (loadingEl) => {
+          await loadingEl.present();
           this.sub = this.productService
-            .getAddress(lat, lng)
+            .getAddress(this.latLong.lat, this.latLong.lng)
             .subscribe((resp) => {
               this.newAddress = resp;
               console.log(resp);
               this.road = resp.address.road;
               this.neighbourhood = resp.address.neighbourhood;
               this.isLoading = false;
+              console.log('reached');
+              this.onSaveNewAddress();
               loadingEl.dismiss();
-              // this.sub.unsubscribe();
             });
         });
   }
@@ -70,7 +63,7 @@ export class MapComponent implements OnInit {
     const address = JSON.parse(localStorage.getItem('address'));
     this.map = Leaflet.map('mapView').setView(
       [address.lat, address.lon],
-      18
+      17
     );
     Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attibution: 'Pizzería La Italiana',
@@ -83,7 +76,9 @@ export class MapComponent implements OnInit {
     }).addTo(this.map);
     mark.on('dragend', (ev) => {
       console.log(ev.target);
-      this.onClickMap(ev.target._latlng.lat, ev.target._latlng.lng);
+      this.latLong = ev.target._latlng;
+
+      // this.onClickMap(ev.target._latlng.lat, ev.target._latlng.lng);
     });
   }
 
@@ -92,7 +87,9 @@ export class MapComponent implements OnInit {
   }
 
   onSaveNewAddress() {
+    // this.onNewAddress(this.latLong);
     localStorage.setItem('address', JSON.stringify(this.newAddress));
+    console.log(this.newAddress);
 
     this.modalCtrl.dismiss({
       'address': this.newAddress
