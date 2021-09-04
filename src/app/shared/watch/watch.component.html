@@ -8,9 +8,9 @@
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content class="ion-no-padding">
+    <ion-img [src]="product.image" class="ion-no-margin"></ion-img>
     <ion-card class="ion-text-center" color="primary">
-        <ion-img [src]="product.image" class="ion-no-margin"></ion-img>
         <ion-card-header>
             <ion-card-title>
                 {{product.name}}

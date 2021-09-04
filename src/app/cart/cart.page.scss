@@ -2,6 +2,16 @@ ion-card {
     width: 100%;
 }
 
+ion-card::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 15px;
+    top: 0;
+    left: -5px;
+    background-color: rgb(255, 91, 91);
+}
+
 ion-img {
     max-width: 100px;
     height: 80px;
