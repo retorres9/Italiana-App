@@ -27,6 +27,9 @@
             <ion-button color="secondary" shape="rounded" (click)="onSelectAddress()">Selecciona ubicación</ion-button>
         </ion-list>
     </ion-item>
+    <ion-item *ngIf="orderSent">
+        <ion-label>Pedido generado correctamente</ion-label>
+    </ion-item>
     <div id="btnDelivery">
         <ion-button color="primary" expand="full" size="large" [disabled]="!address" (click)="sendOrder()">Realizar pedido</ion-button>
     </div>

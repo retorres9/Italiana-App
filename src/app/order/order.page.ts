@@ -27,9 +27,9 @@ export class OrderPage implements OnInit {
   orderReference: string = '';
   // order: Order
   isOrderOk: boolean = false;
+  orderSent: boolean = false;
 
   constructor(
-    private router: Router,
     private loadingCtrl: LoadingController,
     private productService: ObtproductosService,
     private activatedRoute: ActivatedRoute,
@@ -48,7 +48,7 @@ export class OrderPage implements OnInit {
   ionViewWillEnter() {
     let addressInfo = JSON.parse(localStorage.getItem('address'));
     addressInfo === null || addressInfo === ''
-      ? this.getLocation
+      ? this.getLocation()
       : this.getPersistentLocation();
   }
 
@@ -74,13 +74,6 @@ export class OrderPage implements OnInit {
         this.address = Geolocation.getCurrentPosition({
           enableHighAccuracy: true,
         }).then((res) => {
-          console.log(res);
-          const address = JSON.parse(localStorage.getItem('address'));
-          // }
-          if (address.length > 0) {
-            loadingEl.dismiss();
-            return;
-          }
           this.sub = this.productService
             .getAddress(res.coords.latitude, res.coords.longitude)
             .subscribe((resp) => {
@@ -149,34 +142,44 @@ export class OrderPage implements OnInit {
     order.date = new Date();
     order.state = States.pending;
     order.cart = JSON.parse(localStorage.getItem('cart'));
-    console.log(order);
     let orderId: string;
-    this.cartService.onNewOrder(order).subscribe((resp) => {
-      console.log(resp);
-      orderId = resp.name;
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization:
-            'key=AAAAsejq3kw:APA91bETJC8mm7Ez_epdSO9hCCRJuiCrROMKaKp4cL8XJISOVHnsf5823FZ0AfcWjT4oDAzr49rr_s2DOj5S9_wxEMZdsbhKlsXjIZomsf1g7CapbXzbHP3qtnIrDPuEqJWWHmkpijVY',
-        }),
-      };
-      return this.http
-        .post(
-          'https://fcm.googleapis.com/fcm/send',
-          JSON.stringify({
-            to: 'c8IXt7yXQEyLeJrBHx7EGb:APA91bEDCy1QZwcyxcR_T0nr90YBaoB8hUVKY_6VfPHkxKol7xkcpnSI3-MEGP2j13TaOTYQt3oCRgZ-qLxw9V11-VyhchkAFmx_w4VpIsNE-dWfjaC0D95CI2xcUm_PiuidE1ix0dX0',
-            notification: {
-              body: 'Nuevo Pedido, haga click para ver',
-              tittle: 'Italiana App',
-            },
-            data: {
-              orderId: `${orderId}`,
-            },
+    this.loadingCtrl.create({
+      message: 'Enviando pedido'
+    }).then(loadingElement => {
+      loadingElement.present();
+      this.cartService.onNewOrder(order).subscribe((resp) => {
+        console.log(resp);
+        orderId = resp.name;
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            Authorization:
+              'key=AAAAsejq3kw:APA91bETJC8mm7Ez_epdSO9hCCRJuiCrROMKaKp4cL8XJISOVHnsf5823FZ0AfcWjT4oDAzr49rr_s2DOj5S9_wxEMZdsbhKlsXjIZomsf1g7CapbXzbHP3qtnIrDPuEqJWWHmkpijVY',
           }),
-          httpOptions
-        )
-        .subscribe();
+        };
+        return this.http
+          .post(
+            'https://fcm.googleapis.com/fcm/send',
+            JSON.stringify({
+              to: 'c8IXt7yXQEyLeJrBHx7EGb:APA91bEDCy1QZwcyxcR_T0nr90YBaoB8hUVKY_6VfPHkxKol7xkcpnSI3-MEGP2j13TaOTYQt3oCRgZ-qLxw9V11-VyhchkAFmx_w4VpIsNE-dWfjaC0D95CI2xcUm_PiuidE1ix0dX0',
+              notification: {
+                body: 'Nuevo Pedido, haga click para ver',
+                tittle: 'Italiana App',
+              },
+              data: {
+                orderId: `${orderId}`,
+              },
+            }),
+            httpOptions
+          )
+          .subscribe(
+            resp => {
+              this.orderSent = true;
+              localStorage.removeItem('cart');
+              loadingElement.dismiss();
+            }
+          );
+    })
     });
   }
 

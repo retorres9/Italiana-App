@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-grid *ngIf="cart.length === 0" class="ion-text-center">
+    <ion-grid *ngIf="cart.length === 0 || cart === null" class="ion-text-center">
         <ion-text>No ha seleccionado ningún producto.</ion-text>
     </ion-grid>
     <ion-grid class="ion-no-padding" *ngIf="cart.length >0">

@@ -44,7 +44,6 @@ export class MapComponent implements OnInit {
             .getAddress(this.latLong.lat, this.latLong.lng)
             .subscribe((resp) => {
               this.newAddress = resp;
-              console.log(resp);
               this.road = resp.address.road;
               this.neighbourhood = resp.address.neighbourhood;
               this.isLoading = false;
@@ -77,8 +76,6 @@ export class MapComponent implements OnInit {
     mark.on('dragend', (ev) => {
       console.log(ev.target);
       this.latLong = ev.target._latlng;
-
-      // this.onClickMap(ev.target._latlng.lat, ev.target._latlng.lng);
     });
   }
 
@@ -87,7 +84,6 @@ export class MapComponent implements OnInit {
   }
 
   onSaveNewAddress() {
-    // this.onNewAddress(this.latLong);
     localStorage.setItem('address', JSON.stringify(this.newAddress));
     console.log(this.newAddress);
 
