@@ -23,22 +23,37 @@ h1,
 h2 {
     padding-left: 10px;
     margin: 0;
+    font-family: 'SFBold';
 }
 
 .fondo {
-    --background: #f5f5f5;
+    --background: #f7f6fe;
 }
 
-.card {
-    width: 100%;
-    box-shadow: none;
-    border-radius: 12px;
-    img {
-        object-fit: cover;
-        width: 100%;
-        transform: scale(1.1, 1.1) rotate(1deg);
-        transition: 600ms all ease-in-out;
-    }
+ion-header {
+  background-color: #f7f6fe;
+  box-shadow: none;
+  border: none;
+}
+ion-toolbar {
+  box-shadow: none;
+  height: 65px;
+  border-radius: 0 0 80% 80%;
+}
+
+ion-card{
+  border-radius: 15px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  // background: #D68C98;
+  color: #b72a4d;
+}
+
+.card-category {
+  border: 2px solid #b72a4d;
+}
+
+ion-card-title {
+  color: #b72a4d;
 }
 
 .swiper-slide-active {
@@ -54,15 +69,34 @@ h2 {
     transition: 400ms all ease-in-out;
 }
 
-ion-item {
-    box-shadow: 20px 20px 20px #bebebe;
-    border-radius: 10px;
-}
+// ion-item {
+//     box-shadow: 20px 20px 20px #bebebe;
+//     border-radius: 10px;
+// }
 
 .card-product {
-    box-shadow: 20px 20px 20px #bebebe;
+    box-shadow: rgba(100, 100, 111, 0.2) auto 7px 29px 0px;
+    border: 2px solid #b72a4d;
 }
 
 ion-slides.swiper-container {
     overflow: inherit;
+}
+
+ion-icon{
+  font-size: 25px;
+  padding-bottom: 8px;
+}
+
+ion-card > ion-label{
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+ion-button {
+  font-family: 'SFLight';
+}
+
+:host(.button-full:not(.button-round)) .button-native{
+  border-radius: 15px;
 }

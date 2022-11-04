@@ -1,16 +1,16 @@
-<ion-header>
+<ion-header class="ion-no-border">
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
             <ion-back-button defaultHref="cart"></ion-back-button>
         </ion-buttons>
-        <ion-title>Generar Orden</ion-title>
+        <ion-title>Detalle del pedido</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-item-divider>
+    <!-- <ion-item-divider>
         <ion-label>Detalle del pedido</ion-label>
-    </ion-item-divider>
+    </ion-item-divider> -->
     <ion-item>
         <ion-icon slot="start" name="cash-outline"></ion-icon>
         <ion-label>
@@ -20,12 +20,18 @@
     <ion-item>
         <ion-icon slot="start" name="navigate-outline"></ion-icon>
         <ion-list>
-
             <strong>Calle:</strong> {{road}} <br> <strong>Barrio:</strong> {{neighbourhood}} <br>
             <strong>Referencia:</strong> {{orderReference}}<br>
             <ion-button color="primary" shape="rounded" (click)="addReference()">Agregar referencia</ion-button>
             <ion-button color="secondary" shape="rounded" (click)="onSelectAddress()">Selecciona ubicación</ion-button>
+            <ion-button color="tertiary"><ion-icon name="locate-outline"></ion-icon></ion-button>
         </ion-list>
+    </ion-item>
+    <ion-item>
+        <ion-icon slot="start" name="wallet-outline"></ion-icon>
+        <ion-label position="floating">Ingrese su moneda</ion-label>
+        <ion-input type="number"></ion-input>
+        <!-- <ion-checkbox mode="ios" position="secondary"></ion-checkbox> -->
     </ion-item>
     <ion-item *ngIf="orderSent">
         <ion-label>Pedido generado correctamente</ion-label>

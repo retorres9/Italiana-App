@@ -1,0 +1,13 @@
+ion-header {
+  background-color: #f7f6fe;
+  box-shadow: none;
+}
+ion-toolbar {
+  box-shadow: none;
+  height: 65px;
+  border-radius: 0 0 80% 80%;
+}
+
+ion-searchbar, ion-content {
+  --ion-background-color: #f7f6fe;
+}

@@ -14,6 +14,7 @@ export class MapComponent implements OnInit {
   map: Leaflet.map;
   myIcon = Leaflet.icon({
     iconUrl: 'assets/marcador-de-mapa.png',
+    iconAnchor: [16, 31]
   });
   road: string;
   neighbourhood: string;

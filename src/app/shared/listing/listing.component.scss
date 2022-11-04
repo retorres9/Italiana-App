@@ -1,24 +1,44 @@
+
+ion-card {
+  font-family: 'SFlight';
+}
 ion-card-header {
     width: 100%;
 }
 
 ion-card-title {
     width: 65%;
+    font-family: 'SFlight';
 }
 
 ion-card-subtitle {
     width: 65%;
+    font-family: 'SFlight';
+    text-transform: capitalize;
 }
 
 ion-img {
-    max-width: 100px;
+    min-width: 100px;
     height: 80px;
     position: absolute;
     z-index: 1;
     right: 25px;
     top: 10px;
 }
-
+ion-card > * {
+  border-radius: 10px !important;
+}
 ion-button {
-    border-radius: 10px;
+  text-transform: capitalize;
+}
+button.button-native {
+  border-radius: 10px !important;
+}
+
+.button-ios {
+  border-radius: 10px !important;
+}
+
+ion-grid{
+  background-color: #f7f6fe;
 }

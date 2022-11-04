@@ -32,12 +32,31 @@
 @import "~leaflet/dist/leaflet.css";
 // .ion-slides-promo {
 //     height: 150px;
+
+@font-face {
+  font-family: 'SFLight';
+  src: url('./assets/fonts/SFProDisplay-Light.ttf');
+}
+@font-face {
+  font-family: 'SFRegular';
+  src: url('./assets/fonts/SFProDisplay-Regular.ttf');
+}
+@font-face {
+  font-family: 'SFMedium';
+  src: url('./assets/fonts/SFProDisplay-Medium.ttf');
+}
+@font-face {
+  font-family: 'SFBold';
+  src: url('./assets/fonts/SFProDisplay-Bold.ttf');
+}
 ion-title {
-    font-family: 'Gothic A1', sans-serif;
-    font-weight: 900;
+    font-family: 'SFLight';
 }
 
 h2 {
-    font-family: 'Gothic A1', sans-serif;
-    font-weight: 900;
+    font-family: 'SFRegular';
+}
+
+ion-label{
+    font-family: 'SFMedium';
 }

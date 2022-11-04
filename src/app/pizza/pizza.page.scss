@@ -1,3 +1,16 @@
+ion-header {
+  background-color: #f7f6fe;
+  box-shadow: none;
+}
+
+ion-toolbar {
+  box-shadow: none;
+  height: 65px;
+  border-radius: 0 0 80% 80%;
+}
+ion-content{
+  font-family: 'SFLight';
+}
 ion-card-header {
     width: 100%;
 }
@@ -13,4 +26,8 @@ ion-img {
     z-index: 1;
     right: 25px;
     top: 10px;
+}
+
+ion-segment {
+  background-color: #f7f6fe;
 }
