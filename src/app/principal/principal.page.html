@@ -1,14 +1,24 @@
 <ion-header class="ion-no-border">
     <ion-toolbar color="primary">
-        <ion-title class="ion-text-center">Hola, {{usuario}}</ion-title>
+
+        <ion-searchbar mode="ios" class="ion-padding-top"></ion-searchbar>
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <app-cart-counter></app-cart-counter>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
 <ion-content class="fondo" id="main">
-    <ion-grid>
+    <ion-grid class="ion-padding-top">
+      <ion-text>
+        <h6 class="ion-text-start">Hola, {{usuario}}</h6>
+      </ion-text>
+      <ion-text >
+        <h2 class="ion-text-start">Bienvenido!</h2>
+      </ion-text>
         <ion-row class="ion-no-padding" *ngIf="coupons">
             <ion-col size="12">
                 <ion-slides [options]="slideOpts" class="ion-matgin-top">
@@ -25,13 +35,13 @@
         </ion-row>
         <ion-row>
             <ion-col size="12">
-                <h2 class="ion-padding-bottom">Categorias</h2>
+                <h3 class="ion-padding-bottom">Categorias</h3>
             </ion-col>
             <ion-row class="ion-justify-content-left">
               <ion-col size="5" class="ion-padding-bottom ion-padding-start">
                 <ion-card class="ion-no-padding card-category">
                   <ion-icon class="ion-padding-start ion-padding-top ion-padding-top" name="pizza-outline"></ion-icon><br>
-                  <ion-card-title (click)="pPizza('pizza')" class="ion-text-left ion-padding-bottom ion-padding-start" >Pizzas</ion-card-title>
+                  <ion-card-title (click)="pPizza('pizzas')" class="ion-text-left ion-padding-bottom ion-padding-start" >Pizzas</ion-card-title>
                 </ion-card>
             </ion-col>
             <ion-col size="5" class="ion-padding-bottom ion-padding-start">
@@ -56,7 +66,7 @@
         </ion-row>
         <ion-row>
             <ion-col size="12">
-                <h2>Lo más vendido</h2>
+                <h3>Lo más vendido</h3>
             </ion-col>
             <ion-col size="12">
                 <ion-slides [options]="slideOpts">

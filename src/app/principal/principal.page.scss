@@ -20,10 +20,18 @@
 }
 
 h1,
-h2 {
+h2,
+h3,
+h6 {
     padding-left: 10px;
     margin: 0;
     font-family: 'SFBold';
+}
+
+h6 {
+  font-family: 'SFLight';
+  padding-left: 10px;
+  color: rgb(123, 123, 123);
 }
 
 .fondo {
@@ -43,13 +51,16 @@ ion-toolbar {
 
 ion-card{
   border-radius: 15px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(147, 111, 113, 0.5) 0px 7px 10px 0px;
+  background: rgb(255,231,237);
+  background: linear-gradient(140deg, rgba(255,231,237,1) 0%, rgba(255,247,233,1) 100%);
+
   // background: #D68C98;
   color: #b72a4d;
 }
 
 .card-category {
-  border: 2px solid #b72a4d;
+  border: 2px solid #f3adbe;
 }
 
 ion-card-title {
@@ -69,14 +80,9 @@ ion-card-title {
     transition: 400ms all ease-in-out;
 }
 
-// ion-item {
-//     box-shadow: 20px 20px 20px #bebebe;
-//     border-radius: 10px;
-// }
-
 .card-product {
-    box-shadow: rgba(100, 100, 111, 0.2) auto 7px 29px 0px;
-    border: 2px solid #b72a4d;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+    border: 2px solid #f3adbe;
 }
 
 ion-slides.swiper-container {

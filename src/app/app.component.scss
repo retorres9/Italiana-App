@@ -1,5 +1,9 @@
 ion-header{
-  font-family: 'SFRegular'
+  font-family: 'SFRegular';
+}
+
+.header-ios ion-toolbar:last-of-type {
+  border-radius: 0 0 50% 50%;
 }
 
 ion-label {
@@ -10,3 +14,19 @@ ion-label {
   background-color: #b72a4d;
     color: #fff;
 }
+
+ion-item {
+  color: var(--ion-color-primary);
+}
+
+ion-footer >* {
+  color: var(--ion-color-primary);
+  ion-toolbar {
+    width: 100%;
+  }
+}
+
+ion-title {
+  padding-left: 1em;
+}
+

@@ -14,9 +14,10 @@ export class CartPage implements OnInit {
   totalAmount: number = 0;
   products: Producto[];
   totalAux = 0.00;
+  isRemoving
   constructor(private productService: ObtproductosService,
-              private router: Router,
-              private alertCtrl: AlertController) {}
+    private router: Router,
+    private alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.cart = JSON.parse(localStorage.getItem('cart'));
@@ -41,6 +42,7 @@ export class CartPage implements OnInit {
 
   onTypeSelect(e, id: string, index: number) {
     this.cart[index].selectedType = e.detail.value;
+    this.cart[index].quantity = 1;
     this.calculatePrice(index);
     localStorage.removeItem('cart');
     localStorage.setItem('cart', JSON.stringify(this.cart));
@@ -65,13 +67,18 @@ export class CartPage implements OnInit {
     this.calculatePrice(index);
   }
 
-  removeFromCart(index: number) {
-    let cart= JSON.parse(localStorage.getItem('cart'));
-    cart.splice(index, 1);
-    localStorage.removeItem('cart');
-    localStorage.setItem('cart', JSON.stringify(cart));
-    this.cart = JSON.parse(localStorage.getItem('cart'));
-    this.calculateTotalAmount();
+  removeFromCart(index: number, e) {
+    e.target.parentNode.classList.add('remove-cart-item')
+    setTimeout(() => {
+      let cart = JSON.parse(localStorage.getItem('cart'));
+      cart.splice(index, 1);
+      localStorage.removeItem('cart');
+      localStorage.setItem('cart', JSON.stringify(cart));
+      this.cart = JSON.parse(localStorage.getItem('cart'));
+      this.calculateTotalAmount();
+    }, 300);
+
+
   }
 
   calculateTotalAmount() {

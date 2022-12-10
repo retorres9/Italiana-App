@@ -31,3 +31,16 @@ ion-img {
 ion-segment {
   background-color: #f7f6fe;
 }
+
+ion-button {
+  position: relative;
+  ion-icon {
+    position: relative;
+  }
+  ion-badge {
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    border-radius: 50%;
+  }
+}

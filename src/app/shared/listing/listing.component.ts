@@ -6,6 +6,7 @@ import {
   ToastController,
 } from '@ionic/angular';
 import { WatchComponent } from '../watch/watch.component';
+import { ObtproductosService } from '../../servicios/obtproductos.service'
 
 @Component({
   selector: 'app-listing',
@@ -18,8 +19,9 @@ export class ListingComponent implements OnInit {
   constructor(
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
-    private modalCtrl: ModalController
-  ) {}
+    private modalCtrl: ModalController,
+    private productsController: ObtproductosService
+  ) { }
 
   ngOnInit() {
     // console.log(this.products);
@@ -74,6 +76,7 @@ export class ListingComponent implements OnInit {
     this.cart = [...this.cart, product];
     localStorage.setItem('cart', JSON.stringify(this.cart));
     this.showToast();
+    this.productsController.setCartQty();
   }
 
   showToast() {

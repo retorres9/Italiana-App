@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Producto } from '../pizza/pizza.model';
 import { HttpClient } from '@angular/common/http';
-import { tap,map } from "rxjs/operators";
+import { tap, map } from "rxjs/operators";
 import { Address } from './address.model';
 
 @Injectable({
@@ -11,28 +11,39 @@ import { Address } from './address.model';
 export class ObtproductosService {
   private _product = new BehaviorSubject<Producto[]>([]);
   private _segment: string = 'pizzas';
+  private _cartQty: number;
+
   public get segment(): string {
     return this._segment;
   }
 
-  public get productopizza (){
+  public get productopizza() {
     return this._product.asObservable();
   }
 
+  public get cartQty(): number {
+    return this._cartQty;
+  }
 
-  constructor( private http: HttpClient ) { }
+
+  constructor(private http: HttpClient) { }
 
   setSegment(tipo: string) {
     this._segment = tipo;
   }
 
-  getProducts(segment: string){
+  setCartQty() {
+    console.log(JSON.parse(localStorage.getItem('cart')).length);
+    return this._cartQty = JSON.parse(localStorage.getItem('cart')).length;
+  }
+
+  getProducts(segment: string) {
     const product = new Producto();
     return this.http.get<Producto[]>(`https://proyectopizza-a1591-default-rtdb.firebaseio.com/products.json`).pipe(
-      map(pizza =>{
+      map(pizza => {
         const products = [];
-        for(const key in pizza){
-          if(pizza.hasOwnProperty(key)){
+        for (const key in pizza) {
+          if (pizza.hasOwnProperty(key)) {
             product.id = key;
             product.name = pizza[key].name;
             product.description = pizza[key].description;
@@ -40,12 +51,12 @@ export class ObtproductosService {
             product.image = pizza[key].image;
             product.type = pizza[key].type;
           }
-          products.push({...product});
+          products.push({ ...product });
         }
         localStorage.setItem('products', JSON.stringify(products));
         return products;
       }),
-      tap((products)=>{
+      tap((products) => {
         return this._product.next(products)
       })
     )

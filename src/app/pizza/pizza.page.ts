@@ -31,9 +31,9 @@ export class PizzaPage implements OnInit {
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
     private modalCtrl: ModalController
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ionViewWillEnter() {
     this.fetchProducts(this.segment);
@@ -62,6 +62,9 @@ export class PizzaPage implements OnInit {
         ? this.duplicatedAlert(products[productIdx])
         : this.addToLocalStorage(products[productIdx]);
     }
+    this.obtproductos.setCartQty();
+    this.obtproductos.cartQty;
+
   }
 
   fetchProducts(segment: string) {
@@ -117,6 +120,7 @@ export class PizzaPage implements OnInit {
     this.cart = [...this.cart, product];
     localStorage.setItem('cart', JSON.stringify(this.cart));
     this.showToast();
+    this.obtproductos.setCartQty();
   }
 
   toCart() {

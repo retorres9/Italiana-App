@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar color="primary">
         <ion-title>
-            Producto
+            Detalles
         </ion-title>
         <ion-buttons slot="end">
             <ion-button (click)="onDismissModal()">Cerrar</ion-button>
@@ -10,6 +10,16 @@
 </ion-header>
 <ion-content class="ion-no-padding">
     <img [src]="product.image" class="ion-no-margin">
+    <div class="product-actions">
+      <ion-button color="secondary" class="product-actions__add">
+        Agregar
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+      <ion-button class="product-actions__fav">
+        Agregar a favoritos
+        <ion-icon name="heart"></ion-icon>
+      </ion-button>
+    </div>
     <ion-card class="ion-text-center" color="primary">
         <ion-card-header>
             <ion-card-title>

@@ -20,7 +20,7 @@
         <ion-col size="12">
             <ion-item *ngFor="let product of cart; let i = index">
                 <ion-img st [src]="product.image"></ion-img>
-                <ion-button class="remove-item" size="small" shape="round" color="danger" (click)="removeFromCart(i)">
+                <ion-button class="remove-item" size="small" shape="round" color="danger" (click)="removeFromCart(i, $event)">
                     <ion-icon name="close-outline" slot="icon-only"></ion-icon>
                 </ion-button>
                 <ion-card mode="ios" [ngClass]="{'validate-card': !product.selectedType}">
@@ -43,7 +43,7 @@
                             <div>
                                 <ion-row class="ion-justify-items-center">
                                     <ion-col style="display: flex; justify-content: end;">
-                                        <ion-button (click)="lessQuantity(product.id, i)">
+                                        <ion-button class="less_button" color="light" (click)="lessQuantity(product.id, i)">
                                             <ion-icon name="remove-circle-outline"></ion-icon>
                                         </ion-button>
                                     </ion-col>
